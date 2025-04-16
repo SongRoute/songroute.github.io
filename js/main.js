@@ -1,29 +1,59 @@
-// fullPage.js 초기화 - 전체 페이지 스크롤 효과 설정
-new fullpage('#fullpage', {
+// 섹션 파일들을 불러오는 함수
+async function loadSections() {
+  const sections = ['intro', 'about', 'skills', 'projects', 'contact'];
+  const fullpage = document.getElementById('fullpage');
+  
+  for (const section of sections) {
+    try {
+      const response = await fetch(`sections/${section}.html`);
+      const html = await response.text();
+      fullpage.innerHTML += html;
+    } catch (error) {
+      console.error(`Error loading ${section} section:`, error);
+    }
+  }
+}
+
+// 페이지 로드 시 섹션들을 불러오고 fullPage.js 초기화
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadSections();
+  
+  // fullPage.js 초기화
+  const fullpageInstance = new fullpage('#fullpage', {
     scrollingSpeed: 1000,
     responsiveWidth: 1000,
     afterLoad: function(origin, destination, direction) {
-        updateSectionTitle();
+      updateSectionTitle();
+      updateActiveNavItem(destination.index);
     },
     onLeave: function(origin, destination, direction) {
-        const titles = document.querySelectorAll('.typing');
-        if (destination.index === 0) {
-            // 인트로 섹션으로 돌아올 때 타이틀 표시 변경
-            //titles[0].classList.remove('hidden');
-            titles[0].classList.add('visible');
-            titles[1].classList.add('hidden');
-            titles[1].classList.remove('visible');
-        } else if (origin.index === 0) {
-            // 인트로 섹션을 떠날 때 타이틀 표시 변경
-            //titles[0].classList.add('hidden');
-            titles[0].classList.remove('visible');
-            titles[1].classList.remove('hidden');
-            titles[1].classList.add('visible');
-        }
-        
-        // 섹션 타이틀 업데이트
-        updateSectionTitle(destination.index);
+      const titles = document.querySelectorAll('.typing');
+      if (destination.index === 0) {
+        titles[0].classList.add('visible');
+        titles[1].classList.add('hidden');
+        titles[1].classList.remove('visible');
+      } else if (origin.index === 0) {
+        titles[0].classList.remove('visible');
+        titles[1].classList.remove('hidden');
+        titles[1].classList.add('visible');
+      }
+      
+      updateSectionTitle(destination.index);
+      updateActiveNavItem(destination.index);
     }
+  });
+
+  // 네비게이션 메뉴 클릭 이벤트 추가
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  navLinks.forEach((link, index) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      fullpageInstance.moveTo(index + 1); // fullPage.js는 1부터 시작하는 인덱스를 사용
+    });
+  });
+
+  // 초기 타이틀 업데이트
+  updateSectionTitle(0);
 });
 
 // 인트로 섹션의 타이핑 애니메이션 효과
@@ -182,5 +212,14 @@ window.addEventListener('scroll', function() {
     lastScrollTop = scrollTop;
 });
 
-// 초기 타이틀 업데이트
-updateSectionTitle(0);
+// 현재 활성화된 네비게이션 메뉴 아이템 업데이트 함수
+function updateActiveNavItem(sectionIndex) {
+    const navItems = document.querySelectorAll('.nav-menu li');
+    navItems.forEach((item, index) => {
+        if (index === sectionIndex) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}

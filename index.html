@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <!-- Section Title -->
+  <h2 class="section-title">HOME</h2>
+
+  <div id="fullpage">
+    <!-- Intro Section -->
+    <div class="section" id="intro">
+      <div class="intro-content">
+        <div class="title-container">
+          <h1 class="typing visible">Welcome to <span class="highlight">Song Route</span> Portfolio.</h1>
+          <h1 class="typing hidden">안녕하세요 <span class="highlight">송동선</span> 입니다.</h1>
+        </div>
+        <p class="role">송동선</p>
+      </div>
+    </div>
+
+    <!-- About Me Section -->
+    <div class="section" id="about">
+      <div class="about-content">
+        <div class="about-image">
+          <img src="images/profile.jpeg" alt="Profile Picture">
+        </div>
+        <div class="about-text">
+          <p>computer science를 전공하고 있습니다.</p>
+          <p>웹 개발과 임베디드 시스템에 관심이 많습니다.</p>
+          <p>현재 HTML, CSS, JavaScript, C/C++, Python을 공부하고 있으며,</p>
+          <p>웹 개발자와 임베디드 시스템 개발자가 되는 것이 목표입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section" id="skills">
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Frontend</h3>
+          <div class="skill-buttons">
+            <div class="skill-button">
+              <i class="fab fa-html5"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="skill-button">
+              <i class="fab fa-css3-alt"></i>
+              <span>CSS3</span>
+            </div>
+            <div class="skill-button">
+              <i class="fab fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="skill-button">
+              <i class="fab fa-react"></i>
+              <span>React</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Backend</h3>
+          <div class="skill-buttons">
+            <div class="skill-button">
+              <i class="fab fa-java"></i>
+              <span>Java</span>
+            </div>
+            <div class="skill-button">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+            </div>
+            <div class="skill-button">
+              <i class="fas fa-database"></i>
+              <span>MySQL</span>
+            </div>
+            <div class="skill-button">
+              <i class="fab fa-node-js"></i>
+              <span>Node.js</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Tools & Others</h3>
+          <div class="skill-buttons">
+            <div class="skill-button">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+            </div>
+            <div class="skill-button">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </div>
+            <div class="skill-button">
+              <i class="fas fa-terminal"></i>
+              <span>Terminal</span>
+            </div>
+            <div class="skill-button">
+              <i class="fas fa-code-branch"></i>
+              <span>VSCode</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="section" id="projects">
+      <div class="projects-container">
+        <div class="project-card">
+          <h3>포트폴리오 웹사이트</h3>
+          <p>개인 포트폴리오 웹사이트 개발</p>
+          <div class="tech-stack">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="#" class="github-link">GitHub</a>
+        </div>
+        <div class="project-card">
+            <h3>포트폴리오 웹사이트</h3>
+            <p>개인 포트폴리오 웹사이트 개발</p>
+            <div class="tech-stack">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+            <a href="#" class="github-link">GitHub</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section" id="contact">
+      <div class="contact-content">
+        <div class="contact-info">
+          <a href="mailto:your.email@example.com" class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>sdstbbd@gmail.com</span>
+          </a>
+          <a href="https://github.com/yourusername" class="contact-item">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+        </div>
+        <p class="thank-you">Thank you for visiting!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <div class="nav-menu">
+    <ul>
+      <li data-tooltip="Home"><a href="#intro"><i class="fas fa-home"></i></a></li>
+      <li data-tooltip="About"><a href="#about"><i class="fas fa-user"></i></a></li>
+      <li data-tooltip="Skills"><a href="#skills"><i class="fas fa-code"></i></a></li>
+      <li data-tooltip="Projects"><a href="#projects"><i class="fas fa-folder-open"></i></a></li>
+      <li data-tooltip="Contact"><a href="#contact"><i class="fas fa-envelope"></i></a></li>
+    </ul>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

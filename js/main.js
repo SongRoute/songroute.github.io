@@ -1,36 +1,32 @@
-// Initialize fullPage.js
+// fullPage.js 초기화 - 전체 페이지 스크롤 효과 설정
 new fullpage('#fullpage', {
-    navigation: true,
-    navigationPosition: 'right',
-    navigationTooltips: ['Intro', 'About', 'Skills', 'Projects', 'Contact'],
-    showActiveTooltip: true,
     scrollingSpeed: 1000,
-    responsiveWidth: 768,
+    responsiveWidth: 1000,
     afterLoad: function(origin, destination, direction) {
         updateSectionTitle();
     },
     onLeave: function(origin, destination, direction) {
         const titles = document.querySelectorAll('.typing');
         if (destination.index === 0) {
-            // When returning to intro section
-            titles[0].classList.remove('hidden');
+            // 인트로 섹션으로 돌아올 때 타이틀 표시 변경
+            //titles[0].classList.remove('hidden');
             titles[0].classList.add('visible');
             titles[1].classList.add('hidden');
             titles[1].classList.remove('visible');
         } else if (origin.index === 0) {
-            // When leaving intro section
-            titles[0].classList.add('hidden');
+            // 인트로 섹션을 떠날 때 타이틀 표시 변경
+            //titles[0].classList.add('hidden');
             titles[0].classList.remove('visible');
             titles[1].classList.remove('hidden');
             titles[1].classList.add('visible');
         }
         
-        // Update section title
+        // 섹션 타이틀 업데이트
         updateSectionTitle(destination.index);
     }
 });
 
-// Typing animation for intro section
+// 인트로 섹션의 타이핑 애니메이션 효과
 const typingText = document.querySelector('.typing');
 const text = typingText.textContent;
 typingText.textContent = '';
@@ -44,12 +40,12 @@ function typeWriter() {
     }
 }
 
-// Start typing animation when intro section is loaded
+// 페이지 로드 시 타이핑 애니메이션 시작
 document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
 });
 
-// Skill bars animation
+// 스킬 바 애니메이션 효과
 const skillBars = document.querySelectorAll('.skill-level');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -66,7 +62,7 @@ skillBars.forEach(bar => {
     observer.observe(bar);
 });
 
-// Copy email to clipboard
+// 이메일 복사 기능
 const emailLink = document.querySelector('a[href^="mailto"]');
 if (emailLink) {
     emailLink.addEventListener('click', (e) => {
@@ -78,15 +74,15 @@ if (emailLink) {
     });
 }
 
-// Initialize GSAP ScrollTrigger
+// GSAP ScrollTrigger 플러그인 초기화
 gsap.registerPlugin(ScrollTrigger);
 
-// Showcase Section Animation
+// 쇼케이스 섹션 애니메이션 설정
 const showcaseSection = document.querySelector('#showcase');
 const imageContainers = document.querySelectorAll('.image-container');
 const showcaseText = document.querySelector('.showcase-text');
 
-// Initial animation for showcase text
+// 쇼케이스 텍스트 초기 애니메이션
 gsap.from(showcaseText, {
   opacity: 0,
   y: 50,
@@ -99,12 +95,12 @@ gsap.from(showcaseText, {
   }
 });
 
-// Image container animations
+// 이미지 컨테이너 애니메이션 설정
 imageContainers.forEach((container, index) => {
   const image = container.querySelector('.showcase-image');
   const text = container.querySelector('.image-text');
   
-  // Create a timeline for each container
+  // 각 컨테이너별 타임라인 생성
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: container,
@@ -116,7 +112,7 @@ imageContainers.forEach((container, index) => {
     }
   });
   
-  // Add animations to the timeline
+  // 타임라인에 애니메이션 추가
   tl.fromTo(container,
     { opacity: 0, y: 100 },
     { opacity: 1, y: 0, duration: 1 }
@@ -132,7 +128,7 @@ imageContainers.forEach((container, index) => {
     "-=0.5"
   );
   
-  // Add class when container is active
+  // 컨테이너가 활성화될 때 클래스 추가
   ScrollTrigger.create({
     trigger: container,
     start: "top center",
@@ -142,7 +138,7 @@ imageContainers.forEach((container, index) => {
   });
 });
 
-// Section titles
+// 섹션 타이틀 정의
 const sectionTitles = {
     'intro': 'Home',
     'about': 'About Me',
@@ -151,7 +147,7 @@ const sectionTitles = {
     'contact': 'Contact'
 };
 
-// Function to update section title
+// 섹션 타이틀 업데이트 함수
 function updateSectionTitle(sectionIndex) {
     const sectionTitles = ['HOME', 'ABOUT', 'SKILLS', 'PROJECTS', 'CONTACT'];
     const titleElement = document.querySelector('.section-title');
@@ -160,7 +156,7 @@ function updateSectionTitle(sectionIndex) {
     }
 }
 
-// Add scroll event listener for smooth text swap
+// 스크롤 이벤트 리스너 추가 - 부드러운 텍스트 전환 효과
 let lastScrollTop = 0;
 window.addEventListener('scroll', function() {
     const introSection = document.getElementById('intro');
@@ -170,13 +166,13 @@ window.addEventListener('scroll', function() {
     const titles = document.querySelectorAll('.typing');
     
     if (rect.top >= 0) {
-        // When intro section is fully visible
+        // 인트로 섹션이 완전히 보일 때
         titles[0].classList.remove('hidden');
         titles[0].classList.add('visible');
         titles[1].classList.add('hidden');
         titles[1].classList.remove('visible');
     } else {
-        // When scrolling past intro section
+        // 인트로 섹션을 지나 스크롤할 때
         titles[0].classList.add('hidden');
         titles[0].classList.remove('visible');
         titles[1].classList.remove('hidden');
@@ -186,5 +182,5 @@ window.addEventListener('scroll', function() {
     lastScrollTop = scrollTop;
 });
 
-// Initial title update
+// 초기 타이틀 업데이트
 updateSectionTitle(0);

@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* 기본 스타일 초기화 및 기본 설정 */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Fullpage.js Customization */
+/* 전체 페이지 스크롤 섹션 스타일 */
 .section {
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@ body {
     position: relative;
 }
 
-/* Intro Section */
+/* 인트로 섹션 스타일 */
 #intro {
     background: linear-gradient(to bottom, #f5f7fa 0%, #e6e9f0 100%);
 }
@@ -35,6 +35,7 @@ body {
     position: relative;
 }
 
+/* 타이핑 효과를 위한 컨테이너 */
 .title-container {
     position: relative;
     height: 120px;
@@ -42,6 +43,7 @@ body {
     overflow: hidden;
 }
 
+/* 타이핑 애니메이션 효과 */
 .typing {
     font-size: 3rem;
     position: absolute;
@@ -61,16 +63,18 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
+/* 강조 텍스트 색상 */
 .highlight {
     color: #4a90e2;
 }
 
+/* 역할 텍스트 스타일 */
 .role {
     font-size: 1.5rem;
     color: #666;
 }
 
-/* Section Title */
+/* 섹션 제목 스타일 */
 .section-title {
     position: fixed;
     left: 30px;
@@ -85,7 +89,7 @@ body {
     pointer-events: none;
 }
 
-/* About Section */
+/* 자기소개 섹션 스타일 */
 #about {
     background: linear-gradient(to bottom, #e6e9f0 0%, #d1d5e0 100%);
     position: relative;
@@ -100,6 +104,7 @@ body {
     padding: 0 20px;
 }
 
+/* 프로필 이미지 스타일 */
 .about-image {
     flex: 1;
     text-align: center;
@@ -112,6 +117,7 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* 자기소개 텍스트 스타일 */
 .about-text {
     flex: 1;
     text-align: left;
@@ -127,7 +133,7 @@ body {
     color: #4a90e2;
 }
 
-/* Skills Section */
+/* 기술 스택 섹션 스타일 */
 #skills {
     background: linear-gradient(to bottom, #d1d5e0 0%, #b8bdd1 100%);
     position: relative;
@@ -145,6 +151,7 @@ body {
     padding: 0 20px;
 }
 
+/* 기술 카테고리 스타일 */
 .skill-category {
     margin-bottom: 40px;
 }
@@ -156,6 +163,7 @@ body {
     text-align: center;
 }
 
+/* 기술 버튼 스타일 */
 .skill-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -192,7 +200,7 @@ body {
     color: #333;
 }
 
-/* Projects Section */
+/* 프로젝트 섹션 스타일 */
 #projects {
     background: linear-gradient(to bottom, #b8bdd1 0%, #9fa6c2 100%);
     position: relative;
@@ -203,6 +211,7 @@ body {
     color: #333;
 }
 
+/* 프로젝트 카드 그리드 레이아웃 */
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -213,6 +222,7 @@ body {
     padding: 0 20px;
 }
 
+/* 프로젝트 카드 스타일 */
 .project-card {
     background: #fff;
     padding: 20px;
@@ -225,6 +235,7 @@ body {
     transform: translateY(-5px);
 }
 
+/* 기술 스택 태그 스타일 */
 .tech-stack {
     margin: 15px 0;
 }
@@ -238,6 +249,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* 깃허브 링크 버튼 스타일 */
 .github-link {
     display: inline-block;
     padding: 8px 15px;
@@ -252,7 +264,7 @@ body {
     background-color: #357abd;
 }
 
-/* Contact Section */
+/* 연락처 섹션 스타일 */
 #contact {
     background: linear-gradient(to bottom, #9fa6c2 0%, #868eb3 100%);
     position: relative;
@@ -270,6 +282,7 @@ body {
     padding: 0 20px;
 }
 
+/* 연락처 정보 스타일 */
 .contact-info {
     margin: 30px 0;
     display: flex;
@@ -297,16 +310,16 @@ body {
 
 .contact-item i {
     margin-right: 10px;
-    color: #4a90e2;
+    color: #ffffff;
 }
 
 .thank-you {
     font-size: 1.5rem;
-    color: #333;
+    color: #eaeaea;
     margin-top: 30px;
 }
 
-/* Navigation Menu */
+/* 네비게이션 메뉴 스타일 */
 .nav-menu {
     position: fixed;
     right: 30px;
@@ -360,7 +373,7 @@ body {
     color: white;
 }
 
-/* Navigation Tooltips */
+/* 네비게이션 툴팁 스타일 */
 .nav-menu li::before {
     content: attr(data-tooltip);
     position: absolute;
@@ -400,7 +413,7 @@ body {
     right: 60px;
 }
 
-/* Mobile Responsive Styles */
+/* 모바일 반응형 스타일 */
 @media (max-width: 768px) {
     .section-title {
         font-size: 1.2rem;
@@ -494,7 +507,7 @@ body {
     }
 }
 
-/* Small Mobile Devices */
+/* 작은 모바일 기기 스타일 */
 @media (max-width: 480px) {
     .typing {
         font-size: 1.5rem;
@@ -524,7 +537,7 @@ body {
     }
 }
 
-/* Animations */
+/* 페이드인 애니메이션 */
 @keyframes fadeIn {
     from {
         opacity: 0;

@@ -267,15 +267,18 @@ body {
 
 /* 프로젝트 카드 스타일 */
 .project-card {
-    background: rgba(255, 255, 255, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-7px);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* 기술 스택 태그 스타일 */

@@ -14,46 +14,52 @@ async function loadSections() {
   }
 }
 
-// 페이지 로드 시 섹션들을 불러오고 fullPage.js 초기화
+// 섹션 타이틀 업데이트 함수
+function updateSectionTitle(sectionIndex) {
+  const sectionTitles = ['HOME', 'ABOUT', 'SKILLS', 'PROJECTS', 'CONTACT'];
+  const titleElement = document.querySelector('.section-title');
+  if (titleElement) {
+    titleElement.textContent = sectionTitles[sectionIndex];
+  }
+}
+
+// 네비게이션 메뉴 활성화 업데이트 함수
+function updateActiveNavItem(sectionIndex) {
+  const navItems = document.querySelectorAll('.nav-menu li');
+  navItems.forEach((item, index) => {
+    item.classList.toggle('active', index === sectionIndex);
+  });
+}
+
+// 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', async () => {
   await loadSections();
   
   // fullPage.js 초기화
-  const fullpageInstance = new fullpage('#fullpage', {
+  new fullpage('#fullpage', {
     scrollingSpeed: 1000,
-    responsiveWidth: 1000,
-    afterLoad: function(origin, destination, direction) {
-      updateSectionTitle();
+    scrollOverflow: true,
+    afterLoad: (origin, destination) => {
+      updateSectionTitle(destination.index);
       updateActiveNavItem(destination.index);
     },
-    onLeave: function(origin, destination, direction) {
+    onLeave: (origin, destination) => {
       const titles = document.querySelectorAll('.typing');
       if (destination.index === 0) {
         titles[0].classList.add('visible');
-        titles[1].classList.add('hidden');
-        titles[1].classList.remove('visible');
-      } else if (origin.index === 0) {
-        titles[0].classList.remove('visible');
-        titles[1].classList.remove('hidden');
-        titles[1].classList.add('visible');
       }
-      
       updateSectionTitle(destination.index);
       updateActiveNavItem(destination.index);
     }
   });
 
-  // 네비게이션 메뉴 클릭 이벤트 추가
-  const navLinks = document.querySelectorAll('.nav-menu a');
-  navLinks.forEach((link, index) => {
+  // 네비게이션 메뉴 클릭 이벤트
+  document.querySelectorAll('.nav-menu a').forEach((link, index) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      fullpageInstance.moveTo(index + 1); // fullPage.js는 1부터 시작하는 인덱스를 사용
+      fullpage_api.moveTo(index + 1);
     });
   });
-
-  // 초기 타이틀 업데이트
-  updateSectionTitle(0);
 });
 
 // 인트로 섹션의 타이핑 애니메이션 효과
@@ -167,59 +173,3 @@ imageContainers.forEach((container, index) => {
     onLeaveBack: () => container.classList.remove('active')
   });
 });
-
-// 섹션 타이틀 정의
-const sectionTitles = {
-    'intro': 'Home',
-    'about': 'About Me',
-    'skills': 'Skills',
-    'projects': 'Projects',
-    'contact': 'Contact'
-};
-
-// 섹션 타이틀 업데이트 함수
-function updateSectionTitle(sectionIndex) {
-    const sectionTitles = ['HOME', 'ABOUT', 'SKILLS', 'PROJECTS', 'CONTACT'];
-    const titleElement = document.querySelector('.section-title');
-    if (titleElement) {
-        titleElement.textContent = sectionTitles[sectionIndex];
-    }
-}
-
-// 스크롤 이벤트 리스너 추가 - 부드러운 텍스트 전환 효과
-let lastScrollTop = 0;
-window.addEventListener('scroll', function() {
-    const introSection = document.getElementById('intro');
-    const rect = introSection.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    const titles = document.querySelectorAll('.typing');
-    
-    if (rect.top >= 0) {
-        // 인트로 섹션이 완전히 보일 때
-        titles[0].classList.remove('hidden');
-        titles[0].classList.add('visible');
-        titles[1].classList.add('hidden');
-        titles[1].classList.remove('visible');
-    } else {
-        // 인트로 섹션을 지나 스크롤할 때
-        titles[0].classList.add('hidden');
-        titles[0].classList.remove('visible');
-        titles[1].classList.remove('hidden');
-        titles[1].classList.add('visible');
-    }
-    
-    lastScrollTop = scrollTop;
-});
-
-// 현재 활성화된 네비게이션 메뉴 아이템 업데이트 함수
-function updateActiveNavItem(sectionIndex) {
-    const navItems = document.querySelectorAll('.nav-menu li');
-    navItems.forEach((item, index) => {
-        if (index === sectionIndex) {
-            item.classList.add('active');
-        } else {
-            item.classList.remove('active');
-        }
-    });
-}

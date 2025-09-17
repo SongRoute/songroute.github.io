@@ -1,0 +1,132 @@
+{
+  "greeting": {
+    "title": "송동선 \uD83D\uDC8D 김주선\n결혼합니다!",
+    "message": "저희 결혼합니다.\n\n서로에게 알맞은 온도로 따뜻하던 우리.\n부부로서 첫걸음을 내딛는 그 설렘의 순간에\n소중한 분들을 초대합니다.",
+    "host": {
+      "groom": {
+        "name": "동선",
+        "relation": "아들",
+        "parents": [
+          {
+            "relation": "아버지",
+            "name": "송지영"
+          },
+          {
+            "relation": "어머니",
+            "name": "양은혜"
+          }
+        ]
+      },
+      "bride": {
+        "name": "주선",
+        "relation": "딸",
+        "parents": [
+          {
+            "relation": "아버지",
+            "name": "김시형"
+          },
+          {
+            "relation": "어머니",
+            "name": "김영미"
+          }
+        ]
+      }
+    },
+    "eventDetail": "2025년 12월 27일 (토) 13:00\n수원 수산교회"
+  },
+  "hostInfo": [
+    {
+      "host": "신랑측",
+      "accountInfo": [
+        {
+          "name": "송동선",
+          "relation": "신랑",
+          "bank": "카카오뱅크",
+          "account": "3333-02-1871160",
+          "kakaopayAccount": "",
+          "tossAccount": ""
+        },
+        {
+          "name": "장아빠",
+          "relation": "아버지",
+          "bank": "농협",
+          "account": "123-45-678901"
+        },
+        {
+          "name": "이엄마",
+          "relation": "어머니",
+          "bank": "농협",
+          "account": "123-45-678901"
+        }
+      ]
+    },
+    {
+      "host": "신부측",
+      "accountInfo": [
+        {
+          "name": "황네모",
+          "relation": "신부",
+          "bank": "토스뱅크",
+          "account": "1234-5678-9012",
+          "kakaopayAccount": "",
+          "tossAccount": ""
+        },
+        {
+          "name": "황아빠",
+          "relation": "아버지",
+          "bank": "농협",
+          "account": "123-45-678901"
+        },
+        {
+          "name": "이엄마",
+          "relation": "어머니",
+          "bank": "농협",
+          "account": "123-45-678901"
+        }
+      ]
+    }
+  ],
+  "mapInfo": {
+    "address1": "수원 수산교회",
+    "address2": "경기도 수원시 팔달구 팔달로 100",
+    "naverMap": "https://naver.me/5555555555555555555555555555555555555555",
+    "kakaoMap": "https://kko.kakao.com/5555555555555555555555555555555555555555",
+    "lat": 37.54222,
+    "lon": 126.952708
+  },
+  "locationInfo": [
+    {
+      "title": "\uD83D\uDCCD 1호선, 기차 수원역",
+      "desc": "\uD83D\uDC49\uD83C\uDFFB 5·6호선 공덕역 7번 출구 (도보 2분)\n\uD83D\uDC49\uD83C\uDFFB 경의·중앙선, 공항철도 공덕역 10번 출구 (도보 30초)"
+    },
+    {
+      "title": "\uD83D\uDCCD 수인분당선 매교역",
+      "desc": "\uD83D\uDC49\uD83C\uDFFB 7번출구 -> 82-1번 버스 (도보 250m)\n\uD83D\uDC49\uD83C\uDFFB 도보 950m"
+    }
+  ],
+  "emojis": [
+    "❤️",
+    "💛",
+    "💌",
+    "🥹",
+    "🥳",
+    "👰🏻‍",
+    "🤵🏻‍️",
+    "🤍",
+    "✨",
+    "💍",
+    "💒",
+    "💕",
+    "😍",
+    "🔔",
+    "💘",
+    "💖",
+    "💗",
+    "💓",
+    "💞",
+    "💕",
+    "💟",
+    "💜"
+
+  ]
+}

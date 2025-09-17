@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import data from 'data.json';
+import data from '@/data.json';
 import Host from '../Contact/Host.tsx';
 import RoundButton from '@/components/RoundButton.tsx';
 import { Caption, Paragraph } from '@/components/Text.tsx';

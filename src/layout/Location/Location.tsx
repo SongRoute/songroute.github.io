@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import data from 'data.json';
+import data from '@/data.json';
 import Address from './Address.tsx';
 import MapButtons from './MapButtons.tsx';
 import { Caption, PointTitle } from '@/components/Text.tsx';

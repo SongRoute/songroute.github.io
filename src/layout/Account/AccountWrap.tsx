@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import Copy from '@/assets/icons/copy.svg?react';
-import kakaopay from '@/assets/icons/kakaopay.png?url';
-import toss from '@/assets/icons/toss.png?url';
+// import Copy from '@/assets/icons/copy.svg?react';
+import kakaopay from '@/assets/icons/kakaopay.png';
+import toss from '@/assets/icons/toss.png';
 
 interface IAccountProps {
   name: string;
@@ -41,7 +41,7 @@ const AccountWrap = ({
           {bank} {account}
         </AccountInfo>
         <CopyButton onClick={handleCopy}>
-          <Copy fill="#dfdfdf" />
+          📋
         </CopyButton>
       </Details>
       <AccountLinks>

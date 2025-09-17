@@ -1,5 +1,5 @@
 import { Map, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk';
-import data from 'data.json';
+import data from '@/data.json';
 
 const KakaoMap = () => {
   const { lat, lon } = data.mapInfo;

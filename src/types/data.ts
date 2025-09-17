@@ -7,9 +7,7 @@ export interface IData {
 }
 
 export interface IGreeting {
-  mainImg: string;
   title: string;
-  date: string;
   message: string;
   host: {
     groom: {
@@ -36,7 +34,7 @@ type Parent = { relation: string; isDeceased?: boolean; name: string }[];
 
 export interface IHostInfo {
   host: string;
-  accountInfo: { name: string; relation: string; bank: string; account: string }[];
+  accountInfo: { name: string; relation: string; bank: string; account: string; kakaopayAccount?: string; tossAccount?: string }[];
 }
 
 export interface IMapInfo {

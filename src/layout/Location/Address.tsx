@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import data from 'data.json';
+import data from '@/data.json';
 import { Caption, PointTitle } from '@/components/Text.tsx';
 import { ILocationInfo } from '@/types/data.ts';
 

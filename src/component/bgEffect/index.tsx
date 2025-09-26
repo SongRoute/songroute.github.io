@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react"
-import patelUrl from "../../icons/petal.png"
+import snowflakeUrl from "../../icons/snowflake.svg"
 
-const X_SPEED = 0.6
-const X_SPEED_VARIANCE = 0.8
+const X_SPEED = 0.2
+const X_SPEED_VARIANCE = 0.3
 
-const Y_SPEED = 0.4
-const Y_SPEED_VARIANCE = 0.4
+const Y_SPEED = 0.8
+const Y_SPEED_VARIANCE = 0.6
 
-const FLIP_SPEED_VARIANCE = 0.02
+const FLIP_SPEED_VARIANCE = 0.01
 
-// Petal class
-class Petal {
+// Snowflake class
+class Snowflake {
   x: number
   y: number
   w: number = 0
@@ -24,7 +24,7 @@ class Petal {
   constructor(
     private canvas: HTMLCanvasElement,
     private ctx: CanvasRenderingContext2D,
-    private petalImg: HTMLImageElement,
+    private snowflakeImg: HTMLImageElement,
   ) {
     this.x = Math.random() * canvas.width
     this.y = Math.random() * canvas.height * 2 - canvas.height
@@ -33,9 +33,9 @@ class Petal {
   }
 
   initialize() {
-    this.w = 25 + Math.random() * 15
-    this.h = 20 + Math.random() * 10
-    this.opacity = this.w / 80
+    this.w = 8 + Math.random() * 16
+    this.h = this.w // 눈송이는 정사각형
+    this.opacity = 0.4 + Math.random() * 0.6
     this.flip = Math.random()
 
     this.xSpeed = X_SPEED + Math.random() * X_SPEED_VARIANCE
@@ -57,13 +57,17 @@ class Petal {
       }
     }
     this.ctx.globalAlpha = this.opacity
+    this.ctx.save()
+    this.ctx.translate(this.x + this.w/2, this.y + this.h/2)
+    this.ctx.rotate(this.flip)
     this.ctx.drawImage(
-      this.petalImg,
-      this.x,
-      this.y,
-      this.w * (0.6 + Math.abs(Math.cos(this.flip)) / 3),
-      this.h * (0.8 + Math.abs(Math.sin(this.flip)) / 5),
+      this.snowflakeImg,
+      -this.w/2,
+      -this.h/2,
+      this.w,
+      this.h,
     )
+    this.ctx.restore()
   }
 
   animate() {
@@ -77,7 +81,7 @@ class Petal {
 export const BGEffect = () => {
   const ref = useRef<HTMLCanvasElement>({} as HTMLCanvasElement)
 
-  const petalsRef = useRef<Petal[]>([])
+  const snowflakesRef = useRef<Snowflake[]>([])
 
   const resizeTimeoutRef = useRef(0)
   const animationFrameIdRef = useRef(0)
@@ -90,27 +94,27 @@ export const BGEffect = () => {
 
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
-    const petalImg = new Image()
-    petalImg.src = patelUrl
+    const snowflakeImg = new Image()
+    snowflakeImg.src = snowflakeUrl
 
-    const getPetalNum = () => {
-      return Math.floor((window.innerWidth * window.innerHeight) / 30000)
+    const getSnowflakeNum = () => {
+      return Math.floor((window.innerWidth * window.innerHeight) / 20000)
     }
 
-    const initializePetals = () => {
-      const count = getPetalNum()
-      const petals = []
+    const initializeSnowflakes = () => {
+      const count = getSnowflakeNum()
+      const snowflakes = []
       for (let i = 0; i < count; i++) {
-        petals.push(new Petal(canvas, ctx, petalImg))
+        snowflakes.push(new Snowflake(canvas, ctx, snowflakeImg))
       }
-      petalsRef.current = petals
+      snowflakesRef.current = snowflakes
     }
 
-    initializePetals()
+    initializeSnowflakes()
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      petalsRef.current.forEach((petal) => petal.animate())
+      snowflakesRef.current.forEach((snowflake) => snowflake.animate())
       animationFrameIdRef.current = requestAnimationFrame(render)
     }
 
@@ -121,13 +125,13 @@ export const BGEffect = () => {
       resizeTimeoutRef.current = window.setTimeout(() => {
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
-        const newPetalNum = getPetalNum()
-        if (newPetalNum > petalsRef.current.length) {
-          for (let i = petalsRef.current.length; i < newPetalNum; i++) {
-            petalsRef.current.push(new Petal(canvas, ctx, petalImg))
+        const newSnowflakeNum = getSnowflakeNum()
+        if (newSnowflakeNum > snowflakesRef.current.length) {
+          for (let i = snowflakesRef.current.length; i < newSnowflakeNum; i++) {
+            snowflakesRef.current.push(new Snowflake(canvas, ctx, snowflakeImg))
           }
-        } else if (newPetalNum < petalsRef.current.length) {
-          petalsRef.current.splice(newPetalNum)
+        } else if (newSnowflakeNum < snowflakesRef.current.length) {
+          snowflakesRef.current.splice(newSnowflakeNum)
         }
       }, 100)
     }

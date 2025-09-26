@@ -30,7 +30,8 @@ jobs:
           VITE_STATIC_ONLY=$VITE_STATIC_ONLY
           VITE_PREVIEW_IMAGE_VERSION=$VITE_PREVIEW_IMAGE_VERSION
           NAVER_MAP_CLIENT_ID=$NAVER_MAP_CLIENT_ID
-          NAVER_MAP_CLIENT_SECRET=$NAVER_MAP_CLIENT_SECRET" >> .env
+          NAVER_MAP_CLIENT_SECRET=$NAVER_MAP_CLIENT_SECRET
+          SITE_ORIGIN=$SITE_ORIGIN" >> .env
         env:
           VITE_NAVER_MAP_CLIENT_ID: ${{ secrets.VITE_NAVER_MAP_CLIENT_ID }}
           VITE_KAKAO_SDK_JS_KEY: ${{ secrets.VITE_KAKAO_SDK_JS_KEY }}
@@ -39,6 +40,7 @@ jobs:
           VITE_PREVIEW_IMAGE_VERSION: ${{ github.run_id }}
           NAVER_MAP_CLIENT_ID: ${{ secrets.NAVER_MAP_CLIENT_ID }}
           NAVER_MAP_CLIENT_SECRET: ${{ secrets.NAVER_MAP_CLIENT_SECRET }}
+          SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@v4

@@ -15,6 +15,7 @@ import {
 const distFolder = "build"
 
 let base = "/"
+const siteOrigin = process.env.SITE_ORIGIN || (pkg.homepage?.startsWith("http") ? pkg.homepage.replace(/\/$/, "") : "")
 
 try {
   const url = new URL(pkg.homepage)
@@ -35,6 +36,8 @@ export default defineConfig({
           BRIDE_FULLNAME,
           DESCRIPTION: `${WEDDING_DATE.format("M월 D일 A h시")} ${LOCATION}`,
           PREVIEW_IMAGE_VERSION: process.env.VITE_PREVIEW_IMAGE_VERSION || Date.now().toString(),
+          SITE_ORIGIN: siteOrigin,
+          BASE_PATH: base,
         },
       },
     }),

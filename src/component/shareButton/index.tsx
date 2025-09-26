@@ -24,6 +24,7 @@ export const ShareButton = () => {
           }
 
           const cacheBuster = (import.meta.env as any).VITE_PREVIEW_IMAGE_VERSION || Date.now().toString()
+          const origin = (import.meta.env as any).SITE_ORIGIN || (window.location.protocol + '//' + window.location.host)
 
           kakao.Share.sendDefault({
             objectType: "location",
@@ -35,12 +36,7 @@ export const ShareButton = () => {
                 WEDDING_DATE.format("YYYY년 MMMM D일 dddd A h시") +
                 "\n" +
                 LOCATION,
-              imageUrl:
-                window.location.protocol +
-                "//" +
-                window.location.host +
-                baseUrl +
-                "/preview_image.png?v=" + cacheBuster,
+              imageUrl: origin + baseUrl + "/preview_image.png?v=" + cacheBuster,
               link: {
                 mobileWebUrl:
                   window.location.protocol +

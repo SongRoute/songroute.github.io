@@ -35,10 +35,6 @@ function App() {
         <LazyDiv className="card-group">
           {/* 오시는길 */}
           <Location />
-        </LazyDiv>
-
-        <LazyDiv className="card-group">
-          {/* 마음 전하기 */}
           <Information />
         </LazyDiv>
       </div>

@@ -3,7 +3,6 @@ import { STATIC_ONLY } from "../../env"
 import { Button } from "../button"
 import { LazyDiv } from "../lazyDiv"
 import { useModal } from "../modal"
-import { AttendanceInfo } from "./attendance"
 
 export const Information1 = () => {
   return (
@@ -12,9 +11,22 @@ export const Information1 = () => {
       <div className="info-card">
         <div className="label">식사 안내</div>
         <div className="content">
-          식사시간: 12시 30분 ~ 14시 30분
+          식사시간: 12시 부터 식사 가능합니다.
           <br />
-          장소: 지하 1층 연회장
+          장소: 수산교회 3층
+        </div>
+      </div>
+    </>
+  )
+}
+
+export const Information3 = () => {
+  return (
+    <>
+      <div className="info-card">
+        <div className="label">예식 안내</div>
+        <div className="content">
+          예식은 결혼예배로 진행됩니다.
         </div>
       </div>
     </>
@@ -29,12 +41,12 @@ export const Information2 = () => {
       <div className="info-card">
         <div className="label">마음 전하기</div>
         <div className="content">
-          참석이 어려워 직접 축하해주지 못하는
+          화환은 정중히 사양합니다.
           <br />
-          분들을 위해 계좌번호를 기재하였습니다.
-          <br />
-          넓은 마음으로 양해 부탁드립니다.
+          마음만 감사히 받겠습니다.
         </div>
+
+        
 
         <div className="break" />
 
@@ -165,8 +177,8 @@ export const Information = () => {
   return (
     <LazyDiv className="card information">
       <Information1 />
+      <Information3 />
       <Information2 />
-      <AttendanceInfo />
     </LazyDiv>
   )
 }

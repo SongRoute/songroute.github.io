@@ -115,9 +115,7 @@ body {
   // 버튼과 아이콘은 더 진한 색으로
   button {
     color: var(--dark-color) !important;
-    &:hover {
-      color: #8B0000 !important;
-    }
+    // hover effect removed for mobile tap reliability
   }
   
   // 강조 텍스트

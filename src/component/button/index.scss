@@ -4,6 +4,8 @@ button.button {
   position: relative;
   z-index: 3;
   font-size: 1rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
   &.button-style-1 {
     background-color: var(--white-color);

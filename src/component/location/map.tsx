@@ -14,7 +14,7 @@ export const Map = () => {
   const [showLockMessage, setShowLockMessage] = useState(false)
   const lockMessageTimeout = useRef(0)
 
-  // Static map URL using Naver Static Map API
+  // Static map URL using Naver Static Map API (fetched at build time into public/static-map.png)
   const [lng, lat] = WEDDING_HALL_POSITION
   const staticMapUrl = `/static-map.png`
 
@@ -77,31 +77,16 @@ export const Map = () => {
             target="_blank" 
             rel="noopener noreferrer"
           >
-            {NAVER_MAP_CLIENT_ID ? (
-              <img 
-                className="map-inner" 
-                src={staticMapUrl} 
-                alt="시산교회 위치 지도" 
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "/preview_image.png";
-                }}
-              />
-            ) : (
-              <div className="map-fallback" style={{ 
-                width: "100%", 
-                height: "100%", 
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "center",
-                backgroundColor: "#f5f5f5",
-                color: "#666",
-                fontSize: "14px"
-              }}>
-                지도 정보를 불러올 수 없습니다
-              </div>
-            )}
+            <img 
+              className="map-inner" 
+              src={staticMapUrl} 
+              alt="시산교회 위치 지도" 
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "/preview_image.png";
+              }}
+            />
           </a>
         )}
       </div>

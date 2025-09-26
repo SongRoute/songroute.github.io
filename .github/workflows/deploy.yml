@@ -50,6 +50,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NAVER_MAP_CLIENT_ID: ${{ secrets.NAVER_MAP_CLIENT_ID }}
+          NAVER_MAP_CLIENT_SECRET: ${{ secrets.NAVER_MAP_CLIENT_SECRET }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

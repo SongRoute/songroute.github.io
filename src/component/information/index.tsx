@@ -40,14 +40,7 @@ export const Information2 = () => {
     <>
       <div className="info-card">
         <div className="label">마음 전하기</div>
-        <div className="content">
-          화환은 정중히 사양합니다.
-          <br />
-          마음만 감사히 받겠습니다.
-        </div>
-
         
-
         <div className="break" />
 
         <Button

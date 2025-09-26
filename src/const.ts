@@ -21,7 +21,6 @@ export const SHARE_ADDRESS_TITLE = LOCATION
 export const WEDDING_HALL_POSITION = [127.032063, 37.287463]
 
 export const NMAP_PLACE_ID = 13321741
-export const KMAP_PLACE_ID = 8634826
 
 export const BRIDE_FULLNAME = "김주선"
 export const BRIDE_FIRSTNAME = "주선"
@@ -30,16 +29,16 @@ export const BRIDE_FATHER = "김시형"
 export const BRIDE_MOTHER = "김영미"
 export const BRIDE_INFO = [
   {
-    relation: "신부",
-    name: BRIDE_FULLNAME,
-    phone: "010-3517-8627",
-    account: "우리은행 0000000000000",
-  },
-  {
     relation: "신부 아버지",
     name: BRIDE_FATHER,
     phone: "010-0000-0000",
-    account: "하나은행 00000000000",
+    account: "우리은행 268-009655-02-001",
+  },
+  {
+    relation: "신부",
+    name: BRIDE_FULLNAME,
+    phone: "010-3517-8627",
+    account: "카카오뱅크 3333-07-6220722",
   }
 ]
 

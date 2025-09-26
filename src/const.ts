@@ -12,13 +12,13 @@ export { dayjs }
 export const WEDDING_DATE = dayjs.tz("2025-12-27 13:00", "Asia/Seoul")
 export const HOLIDAYS = [15]
 
-export const LOCATION = "수원시 팔달구 수산교회"
-export const LOCATION_ADDRESS = "수원시 팔달구 인계로 39번길 11"
+export const LOCATION = "수원시 팔달구 인계로39번길 11"
+export const LOCATION_ADDRESS = "경기 수원시 팔달구 인계로39번길 11"
 
 export const SHARE_ADDRESS = LOCATION
 export const SHARE_ADDRESS_TITLE = LOCATION 
 
-export const WEDDING_HALL_POSITION = [127.032063, 37.287463]
+export const WEDDING_HALL_POSITION = [127.020675, 37.270326]
 
 export const NMAP_PLACE_ID = 13321741
 

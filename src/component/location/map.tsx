@@ -2,11 +2,7 @@ import { useState, useRef } from "react"
 import nmapIcon from "../../icons/nmap-icon.png"
 import LockIcon from "../../icons/lock-icon.svg?react"
 import UnlockIcon from "../../icons/unlock-icon.svg?react"
-import {
-  LOCATION,
-  NMAP_PLACE_ID,
-  WEDDING_HALL_POSITION,
-} from "../../const"
+import { LOCATION, WEDDING_HALL_POSITION } from "../../const"
 import { NAVER_MAP_CLIENT_ID } from "../../env"
 
 export const Map = () => {
@@ -17,6 +13,7 @@ export const Map = () => {
   // Static map URL using Naver Static Map API (fetched at build time into public/static-map.png)
   const [lng, lat] = WEDDING_HALL_POSITION
   const staticMapUrl = `/static-map.png`
+  const webMapUrl = `https://map.naver.com/v5/?c=${lng},${lat},17,0,0,0,0`
 
   const checkDevice = () => {
     const userAgent = window.navigator.userAgent
@@ -71,24 +68,29 @@ export const Map = () => {
         >
           {locked ? <LockIcon /> : <UnlockIcon />}
         </button>
-        {!locked && (
-          <a 
-            href={`https://map.naver.com/p/entry/place/${NMAP_PLACE_ID}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img 
-              className="map-inner" 
-              src={staticMapUrl} 
-              alt="시산교회 위치 지도" 
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = "/preview_image.png";
-              }}
-            />
-          </a>
-        )}
+        <a 
+          href={webMapUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <img 
+            className="map-inner" 
+            src={staticMapUrl} 
+            alt="시산교회 위치 지도" 
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            draggable={false}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              // Prevent infinite loop if fallback also fails
+              target.onerror = null
+              const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='300'>
+<rect width='100%' height='100%' fill='#f2f3f5'/>
+<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#888' font-size='16'>지도를 불러올 수 없습니다</text>
+</svg>`
+              target.src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+            }}
+          />
+        </a>
       </div>
       <div className="navigation">
         <button
@@ -96,13 +98,10 @@ export const Map = () => {
             switch (checkDevice()) {
               case "ios":
               case "android":
-                window.open(`nmap://place?id=${NMAP_PLACE_ID}`, "_self")
+                window.open(`nmap://map?lat=${lat}&lng=${lng}&zoom=17&appname=wedding-invitation`, "_self")
                 break
               default:
-                window.open(
-                  `https://map.naver.com/p/entry/place/${NMAP_PLACE_ID}`,
-                  "_blank",
-                )
+                window.open(webMapUrl, "_blank")
                 break
             }
           }}

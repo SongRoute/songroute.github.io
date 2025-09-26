@@ -23,6 +23,8 @@ export const ShareButton = () => {
             return
           }
 
+          const cacheBuster = (import.meta.env as any).VITE_PREVIEW_IMAGE_VERSION || Date.now().toString()
+
           kakao.Share.sendDefault({
             objectType: "location",
             address: SHARE_ADDRESS,
@@ -38,7 +40,7 @@ export const ShareButton = () => {
                 "//" +
                 window.location.host +
                 baseUrl +
-                "/preview_image.png",
+                "/preview_image.png?v=" + cacheBuster,
               link: {
                 mobileWebUrl:
                   window.location.protocol +

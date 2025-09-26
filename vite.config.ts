@@ -34,6 +34,7 @@ export default defineConfig({
           GROOM_FULLNAME,
           BRIDE_FULLNAME,
           DESCRIPTION: `${WEDDING_DATE.format("M월 D일 A h시")} ${LOCATION}`,
+          PREVIEW_IMAGE_VERSION: process.env.VITE_PREVIEW_IMAGE_VERSION || Date.now().toString(),
         },
       },
     }),
@@ -51,4 +52,7 @@ export default defineConfig({
   server: { port: 3000 },
   build: { outDir: distFolder },
   base,
+  define: {
+    'import.meta.env.VITE_PREVIEW_IMAGE_VERSION': JSON.stringify(process.env.VITE_PREVIEW_IMAGE_VERSION || ''),
+  },
 })

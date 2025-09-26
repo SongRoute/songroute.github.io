@@ -28,6 +28,11 @@
     animation-name: modal-fade-in;
     animation-duration: 0.5s;
     opacity: 1;
+    
+    // 모달 내부 텍스트 가독성 보장
+    * {
+      color: var(--dark-color) !important;
+    }
 
     .header {
       padding: 0.5rem;

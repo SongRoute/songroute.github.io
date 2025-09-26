@@ -41,8 +41,6 @@ function App() {
           {/* 마음 전하기 */}
           <Information />
         </LazyDiv>
-
-        <ShareButton />
       </div>
     </div>
   )

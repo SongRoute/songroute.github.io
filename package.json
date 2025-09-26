@@ -9,6 +9,7 @@
   "homepage": "https://songroute.github.io",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/fetch-static-map.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

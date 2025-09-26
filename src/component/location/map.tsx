@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from "react"
-import { useNaver } from "../store"
+import { useState, useRef } from "react"
 import nmapIcon from "../../icons/nmap-icon.png"
 import LockIcon from "../../icons/lock-icon.svg?react"
 import UnlockIcon from "../../icons/unlock-icon.svg?react"
@@ -11,15 +10,13 @@ import {
 import { NAVER_MAP_CLIENT_ID } from "../../env"
 
 export const Map = () => {
-  return NAVER_MAP_CLIENT_ID ? <NaverMap /> : <div>Map is not available</div>
-}
-
-const NaverMap = () => {
-  const naver = useNaver()
-  const ref = useRef<HTMLDivElement>(null)
   const [locked, setLocked] = useState(true)
   const [showLockMessage, setShowLockMessage] = useState(false)
   const lockMessageTimeout = useRef(0)
+
+  // Static map URL using Naver Static Map API
+  const [lng, lat] = WEDDING_HALL_POSITION
+  const staticMapUrl = `/static-map.png`
 
   const checkDevice = () => {
     const userAgent = window.navigator.userAgent
@@ -31,21 +28,6 @@ const NaverMap = () => {
       return "other"
     }
   }
-
-  useEffect(() => {
-    if (naver) {
-      const map = new naver.maps.Map(ref.current, {
-        center: WEDDING_HALL_POSITION,
-        zoom: 17,
-      })
-
-      new naver.maps.Marker({ position: WEDDING_HALL_POSITION, map })
-
-      return () => {
-        map.destroy()
-      }
-    }
-  }, [naver])
 
   return (
     <>
@@ -82,14 +64,46 @@ const NaverMap = () => {
         <button
           className={"lock-button" + (locked ? "" : " unlocked")}
           onClick={() => {
-            clearTimeout(lockMessageTimeout.current)
+            window.clearTimeout(lockMessageTimeout.current)
             setShowLockMessage(false)
             setLocked((locked) => !locked)
           }}
         >
           {locked ? <LockIcon /> : <UnlockIcon />}
         </button>
-        <div className="map-inner" ref={ref}></div>
+        {!locked && (
+          <a 
+            href={`https://map.naver.com/p/entry/place/${NMAP_PLACE_ID}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            {NAVER_MAP_CLIENT_ID ? (
+              <img 
+                className="map-inner" 
+                src={staticMapUrl} 
+                alt="시산교회 위치 지도" 
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "/preview_image.png";
+                }}
+              />
+            ) : (
+              <div className="map-fallback" style={{ 
+                width: "100%", 
+                height: "100%", 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center",
+                backgroundColor: "#f5f5f5",
+                color: "#666",
+                fontSize: "14px"
+              }}>
+                지도 정보를 불러올 수 없습니다
+              </div>
+            )}
+          </a>
+        )}
       </div>
       <div className="navigation">
         <button

@@ -5,6 +5,7 @@
   "author": "Ju Ho Nam <jhnamnam@gmail.com> (https://juhonamnam.github.io/)",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "homepage": "https://songroute.github.io",
   "scripts": {
     "dev": "vite",

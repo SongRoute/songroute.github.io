@@ -7,9 +7,12 @@
 <meta name="description" content="송동선 · AI/ML, 데이터 엔지니어링 · 이력서와 프로젝트">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--paper:#EDF0EB;--ink:#1A2420;--soft:#5A665F;--line:#C9D0C9;--field:#1F4D3A}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141A17;--ink:#E4EAE5;--soft:#9AA69F;--line:#2F3A35;--field:#7FC3A0}}
-:root[data-theme="dark"]{--paper:#141A17;--ink:#E4EAE5;--soft:#9AA69F;--line:#2F3A35;--field:#7FC3A0}
+:root{--paper:#EDF0EB;--card:#F7F9F6;--ink:#1A2420;--soft:#5A665F;--line:#C9D0C9;--field:#1F4D3A;
+  --ok:#2E7D4F;--warn:#B7791F;--bad:#B23B3B;--rec:#1F6F8B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141A17;--card:#1B2320;--ink:#E4EAE5;--soft:#9AA69F;--line:#2F3A35;--field:#7FC3A0;
+  --ok:#6FCB94;--warn:#E0A35A;--bad:#E58A8A;--rec:#6BB8D4}}
+:root[data-theme="dark"]{--paper:#141A17;--card:#1B2320;--ink:#E4EAE5;--soft:#9AA69F;--line:#2F3A35;--field:#7FC3A0;
+  --ok:#6FCB94;--warn:#E0A35A;--bad:#E58A8A;--rec:#6BB8D4}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);
@@ -18,28 +21,27 @@ body{margin:0;background:var(--paper);color:var(--ink);
 a{color:var(--field);text-underline-offset:3px;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--field);outline-offset:3px;border-radius:2px}
+button{font:inherit}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px}
 
-header{padding:88px 0 48px;position:relative}
+header{padding:88px 0 48px}
 h1{margin:0;font-size:clamp(56px,12vw,104px);line-height:1;font-weight:800;letter-spacing:-.04em}
 .role{margin:20px 0 0;font-size:20px;color:var(--soft)}
 .contact{margin:16px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;font-size:16px}
-.pdf{all:unset;cursor:pointer;color:var(--field);border:1px solid var(--field);border-radius:999px;padding:2px 14px;font-size:15px}
-.pdf:hover{background:var(--field);color:var(--paper)}
-.pdf:focus-visible{outline:2px solid var(--field);outline-offset:3px}
+.pill{all:unset;cursor:pointer;color:var(--field);border:1px solid var(--field);border-radius:999px;padding:2px 14px;font-size:15px;line-height:1.6}
+.pill:hover,.pill[aria-pressed="true"]{background:var(--field);color:var(--paper)}
+.pill:focus-visible{outline:2px solid var(--field);outline-offset:3px}
 
 section{padding:0 0 48px}
 h2{margin:0;padding:0 0 10px;border-bottom:2px solid var(--ink);font-size:15px;font-weight:700;color:var(--soft)}
 
-/* timeline rows: period | content */
-.row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:2px 28px;padding:16px 0;border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:2px 28px;padding:16px 0;border-bottom:1px solid var(--line);transition:opacity .2s}
 .row:last-child{border-bottom:0}
 .when{color:var(--soft);font-size:15px;padding-top:2px}
 .row b{font-weight:700}
 .row .sub{display:block;color:var(--soft);font-size:15.5px}
 
-/* projects */
-details{border-bottom:1px solid var(--line)}
+details{border-bottom:1px solid var(--line);transition:opacity .2s}
 details:last-child{border-bottom:0}
 summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:2px 28px;padding:20px 0}
 summary::-webkit-details-marker{display:none}
@@ -50,15 +52,68 @@ summary .stack{margin:5px 0 0;color:var(--soft);font-size:14px}
 summary .tog{color:var(--soft);font-size:22px;line-height:1.2;width:1em;text-align:center}
 summary .tog::before{content:"+"}
 details[open] summary .tog::before{content:"−"}
-.more{margin:-6px 0 0;padding:0 0 22px calc(150px + 28px)}
-.more ul{margin:0;padding-left:18px;color:var(--ink);font-size:15.5px}
+.more{margin:-6px 0 0;padding:0 0 24px calc(150px + 28px)}
+.more ul{margin:0;padding-left:18px;font-size:15.5px}
 .more li+li{margin-top:4px}
-.more a{font-size:15px}
+.more .repo{margin:12px 0 0;font-size:15px}
 
-.skills{display:flex;flex-wrap:wrap;gap:8px;padding:18px 0 0;margin:0;list-style:none}
-.skills li{border:1px solid var(--line);border-radius:6px;padding:3px 12px;font-size:15.5px}
+/* skill filter */
+.skillset{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+.skill{all:unset;cursor:pointer;border-bottom:1px dashed var(--soft);line-height:1.4}
+.skill:hover{color:var(--field);border-color:var(--field)}
+.skill[aria-pressed="true"]{color:var(--paper);background:var(--field);border-color:var(--field);border-radius:4px;padding:0 6px}
+.skill:focus-visible{outline:2px solid var(--field);outline-offset:2px}
+.sep{color:var(--soft)}
+.skill-hint{margin:12px 0 0;color:var(--soft);font-size:14px}
+body.filtering [data-skills]:not(.match){opacity:.28}
+body.filtering .match{box-shadow:inset 3px 0 0 var(--field)}
+body.filtering .row.match,body.filtering details.match>summary{padding-left:12px}
+.filterbar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 8px 8px 18px;font-size:15px;display:none;align-items:center;gap:12px;box-shadow:0 6px 24px rgba(0,0,0,.18);z-index:1000;max-width:calc(100% - 32px)}
+body.filtering .filterbar{display:flex}
+.filterbar button{all:unset;cursor:pointer;background:var(--paper);color:var(--ink);border-radius:999px;padding:2px 12px;font-size:14px}
 
-footer{padding:0 0 64px;color:var(--soft);font-size:14px}
+/* demos */
+.demo{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.demo .cap{margin:0 0 10px;font-size:14px;color:var(--soft)}
+.demo .note{margin:10px 0 0;font-size:13px;color:var(--soft)}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{all:unset;cursor:pointer;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:5px 12px;font-size:14.5px;line-height:1.4}
+.btn:hover{border-color:var(--field)}
+.btn.primary{background:var(--field);border-color:var(--field);color:var(--paper)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--field);outline-offset:2px}
+.btn:disabled{opacity:.4;cursor:default}
+
+/* pitcheezy */
+.pz{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:start}
+.pz svg{width:100%;height:auto;display:block}
+.pz .sit{font-size:14.5px;margin:0 0 8px}
+.pz .sit b{font-weight:700}
+.pz ol{margin:0;padding:0;list-style:none;font-size:14.5px}
+.pz ol li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;padding:3px 0}
+.pz .rank{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:2px solid var(--rec);color:var(--rec);font-size:12px;font-weight:700}
+.pz .pct{color:var(--soft)}
+.pz .act{margin:10px 0 0;padding:8px 10px;border-radius:8px;background:var(--paper);font-size:14.5px;min-height:3.2em}
+.pz .act .hit{color:var(--ok);font-weight:700}
+.pz .act .miss{color:var(--soft);font-weight:600}
+.pz .pos{color:var(--soft);font-size:13.5px;margin-left:auto}
+
+/* barrier free */
+.bf-map{height:300px;border-radius:8px;border:1px solid var(--line);margin-top:10px;background:var(--paper)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:13px;color:var(--soft)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:0}
+
+/* scoutbrief */
+.sb-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.sb-sent{font-size:16px;margin:0;padding:10px 12px;background:var(--paper);border-radius:8px}
+.sb-sent mark{background:transparent;color:inherit;border-bottom:2px solid var(--warn);font-weight:700;padding:0 1px}
+.sb-steps{margin:10px 0 0;padding:0;list-style:none;font-size:14.5px}
+.sb-steps li{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:6px 0;border-top:1px dashed var(--line)}
+.sb-steps li span:first-child{color:var(--soft)}
+.tag{font-weight:700}
+.tag.ok{color:var(--ok)} .tag.bad{color:var(--bad)} .tag.warn{color:var(--warn)}
+
+footer{padding:0 0 72px;color:var(--soft);font-size:14px}
 
 @media (max-width:640px){
   body{font-size:16px}
@@ -66,27 +121,30 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
   header{padding:52px 0 36px}
   .row{grid-template-columns:1fr}
   summary{grid-template-columns:minmax(0,1fr) auto}
-  summary h3{grid-column:1}
-  summary > div{grid-column:1}
+  summary h3,summary>div{grid-column:1}
   summary .tog{grid-column:2;grid-row:1}
   .more{padding-left:0}
+  .pz{grid-template-columns:1fr}
+  .pz svg{max-width:220px;margin:0 auto}
+  .sb-steps li{grid-template-columns:1fr;gap:0}
 }
+@media (prefers-reduced-motion:reduce){.row,details{transition:none}}
 
 @media print{
   @page{size:A4;margin:14mm 16mm}
   :root{--paper:#fff;--ink:#111;--soft:#555;--line:#ccc;--field:#111}
   body{font-size:10.5pt;line-height:1.45}
+  body.filtering [data-skills]:not(.match){opacity:1}
   .wrap{max-width:none;padding:0}
   header{padding:0 0 14pt}
   h1{font-size:28pt}
   .role{margin-top:6pt;font-size:12pt}
   .contact{margin-top:6pt;font-size:10pt}
-  .pdf,.tog,footer{display:none}
+  .pill,.tog,footer,.demo,.filterbar,.skill-hint,.more .repo{display:none!important}
+  .skill{border:0}
   section{padding:0 0 12pt}
-  h2{break-after:avoid}
-  .more p{display:none}
+  h2{break-after:avoid;font-size:10pt;padding-bottom:4pt}
   .when{white-space:nowrap;font-size:9.5pt}
-  h2{font-size:10pt;padding-bottom:4pt}
   .row{padding:6pt 0;grid-template-columns:100pt 1fr}
   summary{padding:7pt 0 2pt;grid-template-columns:100pt 1fr}
   summary h3{font-size:12pt}
@@ -105,7 +163,7 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
   <p class="contact">
     <a href="mailto:sdstbbd@gmail.com">sdstbbd@gmail.com</a>
     <a href="https://github.com/SongRoute">github.com/SongRoute</a>
-    <button class="pdf" type="button" id="pdf">PDF로 저장</button>
+    <button class="pill" type="button" id="pdf">PDF로 저장</button>
   </p>
 </header>
 
@@ -120,15 +178,15 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
 
 <section aria-labelledby="h-exp">
   <h2 id="h-exp">경험</h2>
-  <div class="row">
+  <div class="row" data-skills="python pytorch yolov8 wandb">
     <span class="when">2026.03 – 현재</span>
     <span><b>CVPR 연구실 학부 인턴</b><span class="sub">산불 검출 오탐 저감 연구, 논문 작성 중</span></span>
   </div>
-  <div class="row">
+  <div class="row" data-skills="">
     <span class="when">2026.03 – 현재</span>
     <span><b>CV 스터디 세미나 운영</b><span class="sub">후배 대상 컴퓨터 비전 스터디</span></span>
   </div>
-  <div class="row">
+  <div class="row" data-skills="c">
     <span class="when">2025</span>
     <span><b>NOVA 스터디</b><span class="sub">C언어 자료구조·알고리즘 (<a href="https://github.com/SongRoute/Data_Structue_Study">자료</a>)</span></span>
   </div>
@@ -137,7 +195,7 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
 <section aria-labelledby="h-proj">
   <h2 id="h-proj">프로젝트</h2>
 
-  <details>
+  <details id="p-pitcheezy" data-skills="python pytorch pandas fastapi react typescript wandb">
     <summary>
       <h3>Pitcheezy</h3>
       <div>
@@ -154,11 +212,28 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
         <li>추천 정책은 2026 시즌 2,429경기 오프폴리시 평가에서 개선 근거가 없어 화면에 "검증 전 실험"으로 표시</li>
         <li>MLB 실시간 피드 연동, 2026년 11월 24일 전시</li>
       </ul>
-      <p><a href="https://github.com/SongRoute/pitcheezy">저장소 보기</a></p>
+      <div class="demo" id="pz-demo">
+        <p class="cap">실제 경기 재생 · 투구 전 추천을 보고 실제 공과 비교해 보세요</p>
+        <div class="pz">
+          <svg id="pz-svg" viewBox="0 0 200 230" role="img" aria-label="포수 시점 스트라이크 존"></svg>
+          <div>
+            <p class="sit" id="pz-sit">불러오는 중…</p>
+            <ol id="pz-rec"></ol>
+            <div class="act" id="pz-act" aria-live="polite"></div>
+            <div class="ctrl" style="margin-top:10px">
+              <button class="btn" type="button" id="pz-prev">이전</button>
+              <button class="btn primary" type="button" id="pz-next">실제 투구 보기</button>
+              <span class="pos" id="pz-pos"></span>
+            </div>
+          </div>
+        </div>
+        <p class="note">비중은 모델 정책이 각 후보를 고르는 비율이며 성공 확률이 아닙니다. 경기 뒤 각 투구 직전 정보만으로 계산한 기록입니다.</p>
+      </div>
+      <p class="repo"><a href="https://github.com/SongRoute/pitcheezy">저장소 보기</a></p>
     </div>
   </details>
 
-  <details>
+  <details id="p-scoutbrief" data-skills="python langgraph">
     <summary>
       <h3>ScoutBrief</h3>
       <div>
@@ -172,14 +247,20 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
       <ul>
         <li>LangGraph 파이프라인: 데이터 조회(MCP Tool 4개) → 섹션 생성 → 숫자 검증 → 실패 섹션만 재생성</li>
         <li>승인 토큰을 파이프라인 밖에서 발급해 에이전트가 스스로 배포할 수 없게 설계</li>
-        <li>검증기를 통과한 오류(우연히 맞아떨어진 날조 수치, 해석 방향 반전)를 실행 로그로 기록</li>
-        <li>테스트 54개</li>
+        <li>검증기를 통과한 오류까지 실행 로그로 기록, 테스트 54개</li>
       </ul>
-      <p><a href="https://github.com/SongRoute/scoutbrief">저장소 보기</a></p>
+      <div class="demo" id="sb-demo">
+        <p class="cap">실행 기록에 남은 초안 문장 · 검증기가 무엇을 잡고 무엇을 놓쳤는지 보세요</p>
+        <div class="sb-tabs" role="group" aria-label="사례 선택"></div>
+        <p class="sb-sent" id="sb-sent"></p>
+        <div class="ctrl" style="margin-top:10px"><button class="btn primary" type="button" id="sb-run">검증 돌리기</button></div>
+        <ul class="sb-steps" id="sb-steps" aria-live="polite"></ul>
+      </div>
+      <p class="repo"><a href="https://github.com/SongRoute/scoutbrief">저장소 보기</a></p>
     </div>
   </details>
 
-  <details>
+  <details id="p-zerobase" data-skills="python polars sklearn">
     <summary>
       <h3>Baseball Zerobase</h3>
       <div>
@@ -195,11 +276,11 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
         <li>개발은 2022–2025 정규시즌만 사용, 2025 포스트시즌·2026 3–5월은 최종 평가용으로 잠금</li>
         <li>린트·타입 검사·테스트를 통과해야 변경이 들어가는 품질 관문 운영</li>
       </ul>
-      <p><a href="https://github.com/SongRoute/baseball-zerobase">저장소 보기</a></p>
+      <p class="repo"><a href="https://github.com/SongRoute/baseball-zerobase">저장소 보기</a></p>
     </div>
   </details>
 
-  <details>
+  <details id="p-barrier" data-skills="python rpi">
     <summary>
       <h3>Barrier Free</h3>
       <div>
@@ -215,31 +296,183 @@ footer{padding:0 0 64px;color:var(--soft);font-size:14px}
         <li>1초 단위 진동 분류 → 10 m 구간 집계 → 관리자용 지도</li>
         <li>mock 데이터로 수집부터 지도까지 끝까지 실행되고 테스트로 확인 (현장 검증은 다음 단계)</li>
       </ul>
-      <p><a href="https://github.com/SongRoute/barrier-free">저장소 보기</a></p>
+      <div class="demo" id="bf-demo">
+        <p class="cap">구간을 눌러 위험 점수를 보고, 정비 전후를 바꿔 보세요 (mock 데이터)</p>
+        <div class="ctrl" role="group" aria-label="보기 선택">
+          <button class="btn" type="button" data-bf="before" aria-pressed="true">정비 전</button>
+          <button class="btn" type="button" data-bf="after" aria-pressed="false">정비 후</button>
+        </div>
+        <div class="bf-map" id="bf-map"></div>
+        <div class="legend"><span><i style="background:var(--bad)"></i>위험</span><span><i style="background:var(--warn)"></i>주의</span><span><i style="background:var(--ok)"></i>정상</span><span><i style="border:2px solid var(--soft);width:8px;height:8px"></i>정비 후 사라진 구간</span></div>
+      </div>
+      <p class="repo"><a href="https://github.com/SongRoute/barrier-free">저장소 보기</a></p>
     </div>
   </details>
 </section>
 
 <section aria-labelledby="h-skill">
   <h2 id="h-skill">기술</h2>
-  <div class="row"><span class="when">언어</span><span>Python · C · C++ · TypeScript</span></div>
-  <div class="row"><span class="when">ML</span><span>PyTorch · YOLOv8 · scikit-learn</span></div>
-  <div class="row"><span class="when">데이터</span><span>pandas · polars</span></div>
-  <div class="row"><span class="when">개발</span><span>FastAPI · React · LangGraph · Git</span></div>
-  <div class="row"><span class="when">도구·하드웨어</span><span>Weights &amp; Biases · Raspberry Pi</span></div>
+  <div class="row"><span class="when">언어</span><span class="skillset"><button class="skill" data-skill="python">Python</button><span class="sep">·</span><button class="skill" data-skill="c">C</button><span class="sep">·</span><span>C++</span><span class="sep">·</span><button class="skill" data-skill="typescript">TypeScript</button></span></div>
+  <div class="row"><span class="when">ML</span><span class="skillset"><button class="skill" data-skill="pytorch">PyTorch</button><span class="sep">·</span><button class="skill" data-skill="yolov8">YOLOv8</button><span class="sep">·</span><button class="skill" data-skill="sklearn">scikit-learn</button></span></div>
+  <div class="row"><span class="when">데이터</span><span class="skillset"><button class="skill" data-skill="pandas">pandas</button><span class="sep">·</span><button class="skill" data-skill="polars">polars</button></span></div>
+  <div class="row"><span class="when">개발</span><span class="skillset"><button class="skill" data-skill="fastapi">FastAPI</button><span class="sep">·</span><button class="skill" data-skill="react">React</button><span class="sep">·</span><button class="skill" data-skill="langgraph">LangGraph</button><span class="sep">·</span><span>Git</span></span></div>
+  <div class="row"><span class="when">도구·하드웨어</span><span class="skillset"><button class="skill" data-skill="wandb">Weights &amp; Biases</button><span class="sep">·</span><button class="skill" data-skill="rpi">Raspberry Pi</button></span></div>
+  <p class="skill-hint">기술을 누르면 그 기술을 쓴 경험과 프로젝트가 표시됩니다.</p>
 </section>
 </main>
 
 <footer>2026년 11월 수정</footer>
 </div>
+
+<div class="filterbar" role="status"><span id="fb-text"></span><button type="button" id="fb-clear">해제</button></div>
+
 <script>
 (function(){
+  /* ---------- print ---------- */
   var ds=document.querySelectorAll('details'), prev=[];
-  function open(){prev=[].map.call(ds,function(d){return d.open});ds.forEach(function(d){d.open=true})}
-  function restore(){ds.forEach(function(d,i){d.open=prev[i]})}
-  window.addEventListener('beforeprint',open);
-  window.addEventListener('afterprint',restore);
-  document.getElementById('pdf').addEventListener('click',function(){window.print()});
+  addEventListener('beforeprint',function(){prev=[].map.call(ds,function(d){return d.open});ds.forEach(function(d){d.open=true})});
+  addEventListener('afterprint',function(){ds.forEach(function(d,i){d.open=prev[i]})});
+  document.getElementById('pdf').addEventListener('click',function(){print()});
+
+  /* ---------- skill filter ---------- */
+  var items=document.querySelectorAll('[data-skills]'), skills=document.querySelectorAll('.skill'), active=null;
+  function clearFilter(){
+    active=null;document.body.classList.remove('filtering');
+    items.forEach(function(el){el.classList.remove('match')});
+    skills.forEach(function(b){b.setAttribute('aria-pressed','false')});
+  }
+  skills.forEach(function(b){
+    b.setAttribute('aria-pressed','false');b.type='button';
+    b.addEventListener('click',function(){
+      var k=b.dataset.skill;
+      if(active===k){clearFilter();return}
+      clearFilter();active=k;b.setAttribute('aria-pressed','true');
+      var hits=[];
+      items.forEach(function(el){if((' '+el.dataset.skills+' ').indexOf(' '+k+' ')>-1){el.classList.add('match');hits.push(el)}});
+      document.body.classList.add('filtering');
+      document.getElementById('fb-text').textContent=b.textContent+' · '+hits.length+'곳에서 사용';
+      if(hits[0])hits[0].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+    });
+  });
+  document.getElementById('fb-clear').addEventListener('click',clearFilter);
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&active)clearFilter()});
+
+  function onOpen(id,fn){var d=document.getElementById(id),done=false;d.addEventListener('toggle',function(){if(d.open&&!done){done=true;fn()}})}
+  function el(tag,attrs,text){var e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e}
+
+  /* ---------- Pitcheezy replay ---------- */
+  onOpen('p-pitcheezy',function(){
+    fetch('data/pitcheezy-849843.json').then(function(r){return r.json()}).then(function(D){
+      var P=D.pitches,i=0,shown=false,svg=document.getElementById('pz-svg');
+      var X0=-2,X1=2,Y0=0.6,Y1=4.4,W=200,H=230;
+      function sx(x){return (x-X0)/(X1-X0)*W} function sy(y){return H-(y-Y0)/(Y1-Y0)*H}
+      var cs=getComputedStyle(document.documentElement);
+      function c(v){return cs.getPropertyValue(v).trim()}
+      function draw(){
+        var p=P[i];svg.innerHTML='';
+        svg.appendChild(el('text',{x:W/2,y:14,'text-anchor':'middle','font-size':11,fill:c('--soft')},'포수 시점'));
+        var zl=sx(-0.83),zr=sx(0.83),zt=sy(D.zone.top),zb=sy(D.zone.bottom);
+        svg.appendChild(el('rect',{x:zl,y:zt,width:zr-zl,height:zb-zt,fill:'none',stroke:c('--ink'),'stroke-width':1.5}));
+        for(var k=1;k<3;k++){
+          svg.appendChild(el('line',{x1:zl+(zr-zl)*k/3,x2:zl+(zr-zl)*k/3,y1:zt,y2:zb,stroke:c('--line')}));
+          svg.appendChild(el('line',{y1:zt+(zb-zt)*k/3,y2:zt+(zb-zt)*k/3,x1:zl,x2:zr,stroke:c('--line')}));
+        }
+        var pl=sy(0.75);
+        svg.appendChild(el('path',{d:'M'+sx(-0.71)+' '+pl+' L'+sx(0.71)+' '+pl+' L'+sx(0.71)+' '+(pl+6)+' L'+sx(0)+' '+(pl+12)+' L'+sx(-0.71)+' '+(pl+6)+' Z',fill:c('--line')}));
+        p.rec.forEach(function(r,j){
+          svg.appendChild(el('circle',{cx:sx(r.x),cy:sy(r.y),r:11,fill:c('--card'),stroke:c('--rec'),'stroke-width':2}));
+          svg.appendChild(el('text',{x:sx(r.x),y:sy(r.y)+4,'text-anchor':'middle','font-size':12,'font-weight':700,fill:c('--rec')},String(j+1)));
+        });
+        if(shown&&p.act.x!=null){
+          var ax=Math.max(X0+.1,Math.min(X1-.1,p.act.x)),ay=Math.max(Y0+.1,Math.min(Y1-.1,p.act.y));
+          svg.appendChild(el('circle',{cx:sx(ax),cy:sy(ay),r:8,fill:c('--bad'),stroke:c('--card'),'stroke-width':2}));
+        }
+        var half=p.half==='Top'?'초':'말';
+        var bases=['주자 없음','1루','2루','1·2루','3루','1·3루','2·3루','만루'][p.bases]||'';
+        document.getElementById('pz-sit').innerHTML='<b>'+p.inn+'회'+half+'</b> · '+p.o+'아웃 · 볼 '+p.b+' 스트라이크 '+p.s+' · '+bases+'<br>'+p.pit[0]+' → '+p.bat[0]+' ('+(p.bat[1]==='L'?'좌':'우')+'타)';
+        document.getElementById('pz-rec').innerHTML=p.rec.map(function(r,j){return '<li><span class="rank">'+(j+1)+'</span><span>'+r.l+' · '+r.z+'</span><span class="pct">'+Math.round(r.p*100)+'%</span></li>'}).join('');
+        var a=p.act,act=document.getElementById('pz-act');
+        if(shown){
+          var m=-1;p.rec.forEach(function(r,j){if(m<0&&r.t===a.t)m=j});
+          act.innerHTML='실제: <b>'+a.l+'</b> '+(a.mph?a.mph.toFixed(1)+'mph':'')+' · '+a.z+' · '+a.r+(p.pa?' → '+p.pa:'')+'<br>'+(m>=0?'<span class="hit">추천 '+(m+1)+'순위 구종과 일치</span>':'<span class="miss">추천 구종 밖</span>');
+        }else act.innerHTML='<span class="miss">추천을 보고 실제 공을 예상해 보세요</span>';
+        document.getElementById('pz-pos').textContent=(i+1)+' / '+P.length;
+        document.getElementById('pz-prev').disabled=i===0&&!shown;
+        var nx=document.getElementById('pz-next');
+        nx.textContent=shown?(i<P.length-1?'다음 공':'처음으로'):'실제 투구 보기';
+      }
+      document.getElementById('pz-next').addEventListener('click',function(){
+        if(!shown){shown=true}else{shown=false;i=(i+1)%P.length}draw()});
+      document.getElementById('pz-prev').addEventListener('click',function(){
+        if(shown){shown=false}else if(i>0){i--;shown=true}draw()});
+      draw();
+      matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){cs=getComputedStyle(document.documentElement);draw()});
+    }).catch(function(){document.getElementById('pz-sit').textContent='경기 자료를 불러오지 못했습니다. 새로고침해 주세요.'});
+  });
+
+  /* ---------- ScoutBrief verifier ---------- */
+  var CASES=[
+    {name:'날조 수치 주입',sent:'(오염 주입) 그의 포심 평균 구속은 <mark>111.73</mark>마일에 달했다.',
+     steps:[['검증기','<span class="tag bad">FAIL</span> 111.73은 원자료 어디에도 없음'],['처리','이 섹션만 다시 생성 → 재검증 PASS, 나머지 섹션은 그대로 유지'],['결론','<span class="tag ok">설계대로 동작</span> 시연용으로 일부러 넣은 날조 수치를 자동으로 잡음']]},
+    {name:'우연히 통과한 날조',sent:'… 통산 <mark>20</mark>타수 <mark>8</mark>안타 …',
+     steps:[['검증기','<span class="tag ok">PASS</span> 20은 허용된 설정값, 8은 다른 행에 있는 값과 우연히 일치'],['실제','통산 5타수 2안타'],['결론','<span class="tag bad">놓침</span> 숫자가 "존재"하는지만 보는 검증의 한계 → 사람 확인 단계를 둔 이유']]},
+    {name:'해석 뒤집힘',sent:'특히 Romano는 bvp_xwoba가 <mark>0.895</mark>로, 이정후에게 매우 까다로운 투수일 수 있다.',
+     steps:[['검증기','<span class="tag ok">PASS</span> 0.895는 원자료에 있는 정확한 값'],['실제','0.895는 이정후가 Romano 상대로 낸 성적 → 오히려 공략 대상'],['결론','<span class="tag warn">사람 몫</span> 숫자는 맞고 의미가 반대. 같은 반전을 실행 기록에서 세 번 관측']]}
+  ];
+  var tabs=document.querySelector('.sb-tabs'),cur=0;
+  CASES.forEach(function(cs,j){var b=document.createElement('button');b.className='btn';b.type='button';b.textContent=cs.name;b.setAttribute('aria-pressed',j===0);b.addEventListener('click',function(){cur=j;renderCase()});tabs.appendChild(b)});
+  function renderCase(){
+    [].forEach.call(tabs.children,function(b,j){b.setAttribute('aria-pressed',String(j===cur))});
+    document.getElementById('sb-sent').innerHTML=CASES[cur].sent;
+    document.getElementById('sb-steps').innerHTML='';
+    document.getElementById('sb-run').disabled=false;
+  }
+  document.getElementById('sb-run').addEventListener('click',function(){
+    var ul=document.getElementById('sb-steps');
+    ul.innerHTML=CASES[cur].steps.map(function(s){return '<li><span>'+s[0]+'</span><span>'+s[1]+'</span></li>'}).join('');
+    this.disabled=true;
+  });
+  renderCase();
+
+  /* ---------- Barrier Free map ---------- */
+  onOpen('p-barrier',function(){
+    function loadCss(h){var l=document.createElement('link');l.rel='stylesheet';l.href=h;document.head.appendChild(l)}
+    function loadJs(s,cb){var e=document.createElement('script');e.src=s;e.onload=cb;document.head.appendChild(e)}
+    loadCss('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css');
+    Promise.all([fetch('data/barrier-free.json').then(function(r){return r.json()}),new Promise(function(res){loadJs('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',res)})]).then(function(v){
+      var D=v[0],cs=getComputedStyle(document.documentElement);
+      function c(x){return cs.getPropertyValue(x).trim()}
+      var col={danger:c('--bad'),caution:c('--warn'),normal:c('--ok')},lv={danger:'위험',caution:'주의',normal:'정상'};
+      var map=L.map('bf-map',{scrollWheelZoom:false}).setView([36.6285,127.4562],18);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+      var layer=L.layerGroup().addTo(map);
+      var cmp={};D.comparison.forEach(function(x){cmp[x.segment_id]=x});
+      var before=D.sessions[0],after=D.sessions[1];
+      var aSeg={};after.segments.forEach(function(s){aSeg[s.segment_id]=s});
+      function show(mode){
+        layer.clearLayers();
+        var s=mode==='before'?before:after;
+        L.polyline(s.gps.filter(function(g){return g.gps_valid}).map(function(g){return [g.lat,g.lon]}),{color:c('--soft'),weight:3,opacity:.6}).addTo(layer);
+        before.segments.forEach(function(seg){
+          var cm=cmp[seg.segment_id],a=aSeg[seg.segment_id],m;
+          if(mode==='before'){
+            m=L.circleMarker([seg.center_lat,seg.center_lon],{radius:10,color:col[seg.risk_level],fillColor:col[seg.risk_level],fillOpacity:.75,weight:2});
+            m.bindPopup('<b>'+lv[seg.risk_level]+'</b> 구간 (10 m)<br>최대 위험 점수 '+seg.max_risk_score.toFixed(2)+'<br>감지 '+seg.event_count+'회');
+          }else if(a){
+            m=L.circleMarker([seg.center_lat,seg.center_lon],{radius:10,color:col[a.risk_level],fillColor:col[a.risk_level],fillOpacity:.75,weight:2});
+            m.bindPopup('<b>'+lv[seg.risk_level]+' → '+lv[a.risk_level]+'</b><br>위험 점수 '+cm.before_score.toFixed(2)+' → '+cm.after_score.toFixed(2));
+          }else{
+            m=L.circleMarker([seg.center_lat,seg.center_lon],{radius:10,color:c('--soft'),fillOpacity:0,weight:2,dashArray:'3 3'});
+            m.bindPopup('<b>'+lv[seg.risk_level]+' → 감지 없음</b><br>위험 점수 '+(cm?cm.before_score.toFixed(2):seg.max_risk_score.toFixed(2))+' → 0');
+          }
+          m.addTo(layer);
+        });
+      }
+      document.querySelectorAll('[data-bf]').forEach(function(b){b.addEventListener('click',function(){
+        document.querySelectorAll('[data-bf]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});show(b.dataset.bf)})});
+      show('before');setTimeout(function(){map.invalidateSize()},50);
+    }).catch(function(){document.getElementById('bf-map').textContent='지도를 불러오지 못했습니다.'});
+  });
 })();
 </script>
 </body>

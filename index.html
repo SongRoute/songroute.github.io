@@ -1,222 +1,119 @@
 <!doctype html>
-<html lang="ko" data-lang="ko">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>송동선 Dongseon Song</title>
-<meta name="description" content="송동선 포트폴리오 · AI/ML, 데이터 분석, 데이터 엔지니어링 프로젝트">
+<title>송동선 포트폴리오</title>
+<meta name="description" content="송동선 · AI/ML, 데이터 엔지니어링 프로젝트">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{
-  --paper:#EDF0EB; --sheet:#F8F9F6; --ink:#1A2420; --soft:#4B5751; --line:#C9D0C9;
-  --field:#1F4D3A;
-  --measured:#1F6F8B; --noevid:#A86412; --open:#6E7772; --fail:#A23B3B;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#141A17; --sheet:#1B2320; --ink:#E4EAE5; --soft:#A3AFA8; --line:#2F3A35;
-  --field:#7FC3A0; --measured:#6BB8D4; --noevid:#E0A35A; --open:#98A29C; --fail:#E08484;
-}}
-:root[data-theme="dark"]{
-  --paper:#141A17; --sheet:#1B2320; --ink:#E4EAE5; --soft:#A3AFA8; --line:#2F3A35;
-  --field:#7FC3A0; --measured:#6BB8D4; --noevid:#E0A35A; --open:#98A29C; --fail:#E08484;
-}
+:root{--paper:#EDF0EB;--ink:#1A2420;--soft:#5A665F;--line:#C9D0C9;--field:#1F4D3A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141A17;--ink:#E4EAE5;--soft:#9AA69F;--line:#2F3A35;--field:#7FC3A0}}
+:root[data-theme="dark"]{--paper:#141A17;--ink:#E4EAE5;--soft:#9AA69F;--line:#2F3A35;--field:#7FC3A0}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);
   font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-  font-size:17px;line-height:1.65;font-feature-settings:"tnum" 1;word-break:keep-all}
-html[data-lang="ko"] [lang="en"], html[data-lang="en"] [lang="ko"]{display:none}
+  font-size:17px;line-height:1.6;word-break:keep-all;font-feature-settings:"tnum" 1}
 a{color:var(--field);text-underline-offset:3px;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:2px solid var(--measured);outline-offset:3px;border-radius:2px}
-.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:2px solid var(--field);outline-offset:3px;border-radius:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
 
-/* top bar */
-.bar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:15px}
-.bar nav{display:flex;gap:18px}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px}
-.lang button{all:unset;cursor:pointer;padding:3px 12px;border-radius:999px;font-size:14px;color:var(--soft)}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.lang button:focus-visible{outline:2px solid var(--measured)}
+header{padding:96px 0 56px}
+h1{margin:0;font-size:clamp(56px,12vw,104px);line-height:1;font-weight:800;letter-spacing:-.04em}
+.role{margin:20px 0 0;font-size:20px;color:var(--soft)}
+.contact{margin:16px 0 0;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:16px}
 
-/* hero */
-header.hero{padding:72px 0 24px}
-.hero h1{margin:0;font-size:clamp(52px,11vw,104px);line-height:.95;font-weight:800;letter-spacing:-.04em}
-.hero .roman{display:block;margin-top:14px;font-size:clamp(20px,3.4vw,28px);font-weight:500;letter-spacing:-.01em;color:var(--soft)}
-.hero .role{margin:24px 0 0;font-size:18px;color:var(--soft)}
-.hero .contact{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px 20px;font-size:16px}
+h2{margin:0;padding:0 0 10px;border-bottom:2px solid var(--ink);font-size:15px;font-weight:700;color:var(--soft)}
+section{padding:0 0 56px}
 
+.item{display:grid;grid-template-columns:190px minmax(0,1fr);gap:4px 28px;padding:22px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item h3{margin:0;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
+.item h3 a{color:inherit;text-decoration:none}
+.item h3 a:hover{text-decoration:underline}
+.item .what{margin:0;font-weight:600}
+.item .fact{margin:4px 0 0;color:var(--soft);font-size:15.5px}
+.item .stack{margin:6px 0 0;color:var(--soft);font-size:14px}
 
-.st{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;white-space:nowrap}
-.st::before{content:"";width:11px;height:11px;flex:none;transform:translateY(-.5px)}
-.st.m{color:var(--measured)} .st.m::before{background:var(--measured);border-radius:50%}
-.st.n{color:var(--noevid)}   .st.n::before{border:2px solid var(--noevid);border-radius:50%;width:7px;height:7px}
-.st.o{color:var(--open)}     .st.o::before{border:2px dashed var(--open);width:7px;height:7px}
-.st.f{color:var(--fail)}     .st.f::before{background:var(--fail);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.plain .item h3{font-size:17px;font-weight:700}
+.plain .item .what{font-weight:400}
 
-/* sections */
-section{padding:48px 0 8px}
-h2{font-size:15px;font-weight:700;color:var(--soft);margin:0 0 8px;letter-spacing:0}
-.rule{border:0;border-top:2px solid var(--ink);margin:0 0 6px}
+footer{padding:0 0 64px;color:var(--soft);font-size:14px}
 
-.proj{display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 32px;padding:30px 0;border-bottom:1px solid var(--line)}
-.proj:last-of-type{border-bottom:0}
-.proj .meta h3{margin:0;font-size:26px;font-weight:800;letter-spacing:-.025em;line-height:1.15}
-.proj .meta .when{margin:6px 0 0;font-size:14px;color:var(--soft)}
-.proj .meta .stack{margin:10px 0 0;font-size:14px;color:var(--soft);line-height:1.5}
-.proj .body > p{margin:0 0 14px;max-width:38em}
-.claims{list-style:none;margin:0 0 14px;padding:0;border-left:2px solid var(--line)}
-.claims li{padding:8px 0 8px 16px;display:grid;align-items:start;grid-template-columns:118px minmax(0,1fr);gap:4px 12px;font-size:15.5px;line-height:1.55}
-.claims li + li{border-top:1px dashed var(--line)}
-.fig{margin:6px 0 14px}
-.fig img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
-.fig.phone img{max-width:220px;border-radius:22px}
-.fig figcaption{font-size:13px;color:var(--soft);margin-top:6px}
-.links{font-size:15px;display:flex;flex-wrap:wrap;gap:6px 18px}
-
-.plain{list-style:none;margin:0;padding:0}
-.plain li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:200px minmax(0,1fr);gap:4px 32px}
-.plain li:last-child{border-bottom:0}
-.plain b{font-weight:700}
-.plain .d{color:var(--soft)}
-
-footer{padding:56px 0 64px;color:var(--soft);font-size:14px}
-
-@media (max-width:680px){
+@media (max-width:640px){
   body{font-size:16px}
   .wrap{padding:0 16px}
-  header.hero{padding:32px 0 28px}
-  .proj,.plain li{grid-template-columns:1fr}
-  .claims li{grid-template-columns:1fr}
-  .fig.phone img{max-width:180px}
-  .bar nav{display:none}
+  header{padding:56px 0 40px}
+  .item{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div class="bar">
-  <nav aria-label="Sections">
-    <a href="#projects"><span lang="ko">프로젝트</span><span lang="en">Projects</span></a>
-    <a href="#research"><span lang="ko">연구·활동</span><span lang="en">Research</span></a>
-    <a href="https://github.com/SongRoute">GitHub</a>
-  </nav>
-  <div class="lang" role="group" aria-label="Language">
-    <button type="button" data-set="ko" aria-pressed="true">한국어</button>
-    <button type="button" data-set="en" aria-pressed="false">English</button>
-  </div>
-</div>
-
-<header class="hero">
-  <h1>송동선<span class="roman">Dongseon Song</span></h1>
-  <p class="role"><span lang="ko">AI/ML · 데이터 엔지니어링 · 충북대 컴퓨터공학 졸업예정</span><span lang="en">AI/ML and data engineering · CS, Chungbuk National University</span></p>
+<header>
+  <h1>송동선</h1>
+  <p class="role">AI/ML · 데이터 엔지니어링</p>
   <p class="contact"><a href="mailto:sdstbbd@gmail.com">sdstbbd@gmail.com</a><a href="https://github.com/SongRoute">github.com/SongRoute</a></p>
 </header>
 
 <main>
-<section id="projects" aria-labelledby="h-proj">
-  <h2 id="h-proj"><span lang="ko">프로젝트</span><span lang="en">Projects</span></h2>
-  <hr class="rule">
+<section aria-labelledby="h-proj">
+  <h2 id="h-proj">프로젝트</h2>
 
-  <article class="proj">
-    <div class="meta">
-      <h3>Pitcheezy</h3>
-      <p class="when"><span lang="ko">2026 · 졸업 캡스톤 · 11월 24일 전시</span><span lang="en">2026, graduation capstone, exhibited Nov 24</span></p>
-      <p class="stack">PyTorch, pandas, FastAPI, React</p>
-    </div>
-    <div class="body">
-      <p><span lang="ko">MLB 경기를 보며 옆에 띄워 두는 관전 보조 화면입니다. 투구 직전 상황만으로 다음 공의 구종과 목표 위치 후보를 보여 주고, 실제 투구와 비교합니다. 방향 설정, 실험 설계, ML 모델을 맡았습니다. 학습(2023-05~2025-04)과 검증(2025-07~09)은 시간 순서로 나누고, 2026 자료는 학습과 모델 선택에 쓰지 않았습니다.</span><span lang="en">A second screen for watching MLB games. Using only pre-pitch context, it suggests the next pitch type and target zone, then compares them with the actual pitch. I led direction, experiment design and the ML models. Training (2023-05 to 2025-04) and validation (2025-07 to 09) are split by time, and 2026 data is never used for training or model selection.</span></p>
-      <ul class="claims">
-        <li><span class="st m"><span lang="ko">측정됨</span><span lang="en">Measured</span></span><span><span lang="ko">다음 공 결과(10클래스) 예측 log loss 1.4904, 상황 빈도 기준선 1.5041보다 낮음. 검증 구간 311,721구, 시드 5개 모두 개선.</span><span lang="en">Next-pitch outcome (10 classes) log loss 1.4904 vs 1.5041 for the frequency baseline, on 311,721 validation pitches; better on all 5 seeds.</span></span></li>
-        <li><span class="st n"><span lang="ko">근거 없음</span><span lang="en">No evidence</span></span><span><span lang="ko">추천 정책을 2026 시즌 2,429경기로 오프폴리시 평가한 결과 개선이 확인되지 않아, 화면에 "검증 전 실험"으로 표시합니다.</span><span lang="en">Off-policy evaluation of the recommendation policy on 2,429 games of the 2026 season found no improvement, so the app labels it as experimental.</span></span></li>
-      </ul>
-      <figure class="fig phone"><img src="assets/pitcheezy.png" width="390" height="844" loading="lazy" alt="Pitcheezy 휴대폰 화면: 다음 공 추천 순위와 존 그림"><figcaption><span lang="ko">고정 경기 자료로 찍은 휴대폰 화면</span><span lang="en">Phone screen captured from a fixed recorded game</span></figcaption></figure>
-      <p class="links"><a href="https://github.com/SongRoute/pitcheezy"><span lang="ko">저장소 보기</span><span lang="en">View repository</span></a></p>
+  <article class="item">
+    <h3><a href="https://github.com/SongRoute/pitcheezy">Pitcheezy</a></h3>
+    <div>
+      <p class="what">MLB 다음 공 구종·위치를 추천하는 관전 서비스 (졸업 캡스톤)</p>
+      <p class="fact">31만 구 검증에서 기준선보다 낮은 예측 오차 (log loss 1.490 vs 1.504)</p>
+      <p class="stack">PyTorch · FastAPI · React</p>
     </div>
   </article>
 
-  <article class="proj">
-    <div class="meta">
-      <h3>ScoutBrief</h3>
-      <p class="when"><span lang="ko">2026 · 2인 팀 과제</span><span lang="en">2026, two-person course project</span></p>
-      <p class="stack">LangGraph, MCP, OpenAI, pytest</p>
-    </div>
-    <div class="body">
-      <p><span lang="ko">경기 전 상대 분석 리포트를 쓰는 LLM 에이전트입니다. 숫자가 원자료에 있는지는 코드로 된 검증기가 보고, 틀린 섹션만 다시 쓰게 합니다. 사람이 승인 토큰을 발급해야만 배포됩니다.</span><span lang="en">An LLM agent that drafts pre-game scouting briefs. A code-only verifier checks that each number exists in the source data and regenerates just the failing sections. Nothing ships until a human issues an approval token.</span></p>
-      <ul class="claims">
-        <li><span class="st f"><span lang="ko">실패 기록</span><span lang="en">Logged failure</span></span><span><span lang="ko">실제 "5타수 2안타"가 "20타수 8안타"로 바뀌었는데, 두 숫자가 우연히 허용 값과 겹쳐 검증기를 통과했습니다.</span><span lang="en">A real "2 for 5" became "8 for 20" and passed the verifier because both numbers happened to match allowed values.</span></span></li>
-        <li><span class="st f"><span lang="ko">실패 기록</span><span lang="en">Logged failure</span></span><span><span lang="ko">강한 불펜 투수를 "적극 공략 대상"으로 쓰는 등 해석 방향이 뒤집히는 사례를 실행마다 기록했습니다.</span><span lang="en">Runs where the model flipped the meaning, such as calling the toughest reliever an easy target, were logged per run.</span></span></li>
-      </ul>
-      <p><span lang="ko">그래서 숫자가 실재하는지는 기계가, 숫자가 무슨 뜻인지는 사람이 확인하는 구조로 정했습니다. 검증기, 재생성 경로, 승인 관문, 마스킹은 테스트 54개로 확인합니다.</span><span lang="en">Hence the split: machines check that numbers exist, people check what they mean. 54 tests cover the verifier, regeneration routing, approval gate and masking.</span></p>
-      <p class="links"><a href="https://github.com/SongRoute/scoutbrief"><span lang="ko">저장소 보기</span><span lang="en">View repository</span></a></p>
+  <article class="item">
+    <h3><a href="https://github.com/SongRoute/scoutbrief">ScoutBrief</a></h3>
+    <div>
+      <p class="what">경기 전 분석 리포트를 쓰는 LLM 에이전트</p>
+      <p class="fact">숫자는 코드로 검증하고, 배포는 사람이 승인해야만 진행</p>
+      <p class="stack">LangGraph · MCP · OpenAI</p>
     </div>
   </article>
 
-  <article class="proj">
-    <div class="meta">
-      <h3>Baseball Zerobase</h3>
-      <p class="when"><span lang="ko">2026 · 개인</span><span lang="en">2026, solo</span></p>
-      <p class="stack">Python, polars, scikit-learn, pyright, ruff</p>
-    </div>
-    <div class="body">
-      <p><span lang="ko">이전 코드를 쓰지 않고 처음부터 다시 만든 MLB 선발투수 전략 연구 파이프라인입니다. 투구 시점에 알 수 있던 정보만으로 특징을 만들고, 전이 모델로 구종 후보 순위를 냅니다. 개발에는 2022~2025 정규시즌만 쓰고, 2025 포스트시즌과 2026 3~5월은 최종 평가용으로 잠가 두었습니다. 린트·타입 검사·테스트를 통과해야 변경이 들어갑니다.</span><span lang="en">A clean-room rewrite of an MLB starting-pitcher research pipeline. Features use only what was knowable at pitch time, and a transition model ranks pitch candidates. Development uses 2022–2025 regular seasons only; the 2025 postseason and 2026 March–May stay locked for final review. Lint, type and test gates guard every change.</span></p>
-      <ul class="claims">
-        <li><span class="st o"><span lang="ko">미검증</span><span lang="en">Not yet tested</span></span><span><span lang="ko">추천이 실제 경기에서 효과가 있는지는 이 저장소의 범위 밖입니다.</span><span lang="en">Real-world recommendation effectiveness is outside this repository's scope.</span></span></li>
-      </ul>
-      <figure class="fig"><img src="assets/zerobase.svg" loading="lazy" alt="데이터 수집부터 구종 후보 순위까지의 파이프라인 그림"></figure>
-      <p class="links"><a href="https://github.com/SongRoute/baseball-zerobase"><span lang="ko">저장소 보기</span><span lang="en">View repository</span></a></p>
+  <article class="item">
+    <h3><a href="https://github.com/SongRoute/baseball-zerobase">Baseball Zerobase</a></h3>
+    <div>
+      <p class="what">미래 정보 누수를 막은 MLB 데이터 파이프라인</p>
+      <p class="fact">투구 시점에 알 수 있던 정보만 사용, 최종 평가 데이터는 잠가 둠</p>
+      <p class="stack">polars · scikit-learn</p>
     </div>
   </article>
 
-  <article class="proj">
-    <div class="meta">
-      <h3>Barrier Free</h3>
-      <p class="when"><span lang="ko">2026 · 개인 · 임베디드</span><span lang="en">2026, solo, embedded</span></p>
-      <p class="stack">Raspberry Pi, IMU/GPS, Python, Leaflet</p>
-    </div>
-    <div class="body">
-      <p><span lang="ko">자전거에 단 Raspberry Pi와 IMU·GPS로 교내 오래된 도로의 진동을 모아, 휠체어처럼 작은 바퀴에 위험할 수 있는 구간 후보를 10 m 단위 지도로 보여 줍니다. 정비 전후 비교도 지원합니다.</span><span lang="en">A Raspberry Pi with IMU and GPS on a bicycle records vibration on old campus roads and maps 10 m segments that may be risky for small wheels such as wheelchairs, with before/after comparison.</span></p>
-      <ul class="claims">
-        <li><span class="st m"><span lang="ko">측정됨</span><span lang="en">Measured</span></span><span><span lang="ko">수집, 품질 점검, 분류, 구간 집계, 지도까지 mock 데이터로 끝까지 실행되고 테스트로 확인합니다.</span><span lang="en">The full chain from collection to map runs end to end on mock data and is covered by tests.</span></span></li>
-        <li><span class="st o"><span lang="ko">미검증</span><span lang="en">Not yet tested</span></span><span><span lang="ko">현장 안전 판정과 실제 개선 효과는 별도 검증이 필요합니다.</span><span lang="en">On-site safety judgments and real improvement need separate validation.</span></span></li>
-      </ul>
-      <figure class="fig"><img src="assets/barrier-free.jpg" width="1200" height="863" loading="lazy" alt="mock 데이터로 그린 도로 위험 후보 지도"><figcaption><span lang="ko">mock 데이터로 실행한 화면이며 실제 주행 결과가 아닙니다</span><span lang="en">Rendered from mock data, not a real ride</span></figcaption></figure>
-      <p class="links"><a href="https://github.com/SongRoute/barrier-free"><span lang="ko">저장소 보기</span><span lang="en">View repository</span></a></p>
+  <article class="item">
+    <h3><a href="https://github.com/SongRoute/barrier-free">Barrier Free</a></h3>
+    <div>
+      <p class="what">자전거에 단 Raspberry Pi로 만든 교내 도로 위험 지도</p>
+      <p class="fact">진동·GPS로 10 m 구간별 위험 후보와 정비 전후를 비교</p>
+      <p class="stack">Raspberry Pi · IMU/GPS · Leaflet</p>
     </div>
   </article>
 </section>
 
-<section id="research" aria-labelledby="h-res">
-  <h2 id="h-res"><span lang="ko">연구와 활동</span><span lang="en">Research and activities</span></h2>
-  <hr class="rule">
-  <ul class="plain">
-    <li><b><span lang="ko">CV 연구실 학부 인턴</span><span lang="en">Research intern, CV lab</span></b><span class="d"><span lang="ko">산불 검출 모델의 오탐(False Positive)을 줄이는 연구를 하고 있으며 논문을 쓰고 있습니다.</span><span lang="en">Reducing false positives in wildfire detection; paper in preparation.</span></span></li>
-    <li><b><span lang="ko">CV 스터디 세미나</span><span lang="en">CV study seminar</span></b><span class="d"><span lang="ko">후배들과 컴퓨터 비전 스터디를 꾸려 진행합니다.</span><span lang="en">I run a computer vision study group for junior students.</span></span></li>
-    <li><b><span lang="ko">학습 기록</span><span lang="en">Study notes</span></b><span class="d links"><a href="https://github.com/SongRoute/AI_study">AI · PyTorch</a><a href="https://github.com/SongRoute/hw-cv">Computer Vision</a><a href="https://github.com/SongRoute/Data_Structue_Study">Data Structures</a><a href="https://github.com/SongRoute/baekjoon_solve">Algorithms</a></span></li>
-  </ul>
+<section class="plain" aria-labelledby="h-res">
+  <h2 id="h-res">연구·활동</h2>
+  <article class="item">
+    <h3>CV 연구실 학부 인턴</h3>
+    <p class="what">산불 검출 오탐 저감 연구, 논문 작성 중</p>
+  </article>
+  <article class="item">
+    <h3>CV 스터디 세미나</h3>
+    <p class="what">후배 대상 컴퓨터 비전 스터디 운영</p>
+  </article>
 </section>
 </main>
 
-<footer>
-  <p><a href="mailto:sdstbbd@gmail.com">sdstbbd@gmail.com</a><br><a href="https://github.com/SongRoute">github.com/SongRoute</a></p>
-  <p><span lang="ko">마지막 수정 2026년 11월</span><span lang="en">Last updated November 2026</span></p>
-</footer>
-
+<footer>2026년 11월 수정</footer>
 </div>
-<script>
-(function(){
-  var root=document.documentElement, btns=document.querySelectorAll('.lang button');
-  function set(l){
-    root.setAttribute('data-lang',l); root.setAttribute('lang',l);
-    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.set===l))});
-    try{localStorage.setItem('lang',l)}catch(e){}
-  }
-  var saved=null; try{saved=localStorage.getItem('lang')}catch(e){}
-  var q=new URLSearchParams(location.search).get('lang');
-  set(q==='en'||q==='ko'?q:(saved||'ko'));
-  btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
-})();
-</script>
 </body>
 </html>

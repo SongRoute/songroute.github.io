@@ -40,18 +40,12 @@ a:hover{text-decoration-thickness:2px}
 .lang button:focus-visible{outline:2px solid var(--measured)}
 
 /* hero */
-header.hero{padding:56px 0 40px}
+header.hero{padding:72px 0 24px}
 .hero h1{margin:0;font-size:clamp(52px,11vw,104px);line-height:.95;font-weight:800;letter-spacing:-.04em}
 .hero .roman{display:block;margin-top:14px;font-size:clamp(20px,3.4vw,28px);font-weight:500;letter-spacing:-.01em;color:var(--soft)}
-.hero .role{margin:28px 0 0;font-size:18px;color:var(--soft)}
-.hero .creed{margin:10px 0 0;max-width:30em;font-size:clamp(22px,3.6vw,30px);line-height:1.4;font-weight:650;letter-spacing:-.02em}
+.hero .role{margin:24px 0 0;font-size:18px;color:var(--soft)}
+.hero .contact{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:6px 20px;font-size:16px}
 
-/* legend: the one bold device */
-.legend{margin:40px 0 0;background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
-.legend p{margin:0 0 14px;color:var(--soft);font-size:15px}
-.legend ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px}
-.legend li{display:flex;gap:10px;align-items:baseline;font-size:15px}
-.legend li span.k{font-weight:700}
 
 .st{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;white-space:nowrap}
 .st::before{content:"";width:11px;height:11px;flex:none;transform:translateY(-.5px)}
@@ -92,16 +86,10 @@ footer{padding:56px 0 64px;color:var(--soft);font-size:14px}
   body{font-size:16px}
   .wrap{padding:0 16px}
   header.hero{padding:32px 0 28px}
-  .legend ul{grid-template-columns:1fr}
   .proj,.plain li{grid-template-columns:1fr}
   .claims li{grid-template-columns:1fr}
   .fig.phone img{max-width:180px}
   .bar nav{display:none}
-}
-@media (prefers-reduced-motion:no-preference){
-  .legend li{animation:in .5s cubic-bezier(.2,.7,.2,1) both}
-  .legend li:nth-child(2){animation-delay:.08s}.legend li:nth-child(3){animation-delay:.16s}.legend li:nth-child(4){animation-delay:.24s}
-  @keyframes in{from{opacity:0;transform:translateY(4px)}}
 }
 </style>
 </head>
@@ -113,7 +101,6 @@ footer{padding:56px 0 64px;color:var(--soft);font-size:14px}
     <a href="#projects"><span lang="ko">프로젝트</span><span lang="en">Projects</span></a>
     <a href="#research"><span lang="ko">연구·활동</span><span lang="en">Research</span></a>
     <a href="https://github.com/SongRoute">GitHub</a>
-    <a href="mailto:sdstbbd@gmail.com"><span lang="ko">연락하기</span><span lang="en">Contact</span></a>
   </nav>
   <div class="lang" role="group" aria-label="Language">
     <button type="button" data-set="ko" aria-pressed="true">한국어</button>
@@ -123,24 +110,8 @@ footer{padding:56px 0 64px;color:var(--soft);font-size:14px}
 
 <header class="hero">
   <h1>송동선<span class="roman">Dongseon Song</span></h1>
-  <p class="role">
-    <span lang="ko">충북대학교 컴퓨터공학(AI 트랙) 졸업예정 · AI/ML, 데이터 분석, 데이터 엔지니어링</span>
-    <span lang="en">Computer Science (AI track), Chungbuk National University, graduating soon. AI/ML, data analysis, data engineering.</span>
-  </p>
-  <p class="creed">
-    <span lang="ko">데이터를 모으고, 미래 정보가 새지 않게 나누고, 측정한 것만 말합니다.</span>
-    <span lang="en">I collect data, split it so the future never leaks in, and claim only what I have measured.</span>
-  </p>
-
-  <div class="legend">
-    <p><span lang="ko">아래 프로젝트의 주장마다 근거 상태를 붙였습니다.</span><span lang="en">Every claim below carries its evidence status.</span></p>
-    <ul>
-      <li><span class="st m"><span lang="ko">측정됨</span><span lang="en">Measured</span></span><span><span lang="ko">기록된 실험 결과가 있음</span><span lang="en">backed by a recorded result</span></span></li>
-      <li><span class="st n"><span lang="ko">근거 없음</span><span lang="en">No evidence</span></span><span><span lang="ko">평가했지만 개선이 확인되지 않음</span><span lang="en">evaluated, no improvement found</span></span></li>
-      <li><span class="st o"><span lang="ko">미검증</span><span lang="en">Not yet tested</span></span><span><span lang="ko">범위 밖이거나 아직 검증 전</span><span lang="en">out of scope or pending</span></span></li>
-      <li><span class="st f"><span lang="ko">실패 기록</span><span lang="en">Logged failure</span></span><span><span lang="ko">관측한 실패를 남겨 둠</span><span lang="en">observed failure, kept on record</span></span></li>
-    </ul>
-  </div>
+  <p class="role"><span lang="ko">AI/ML · 데이터 엔지니어링 · 충북대 컴퓨터공학 졸업예정</span><span lang="en">AI/ML and data engineering · CS, Chungbuk National University</span></p>
+  <p class="contact"><a href="mailto:sdstbbd@gmail.com">sdstbbd@gmail.com</a><a href="https://github.com/SongRoute">github.com/SongRoute</a></p>
 </header>
 
 <main>
